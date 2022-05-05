@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -7,22 +8,26 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>Calculator</title>
-  </head>
-  <body>
-  <h1>Calculator</h1>
-  <form action="/abc" method="get">
+</head>
+<body>
+<h1>Calculator</h1>
+<form action="/calculate" method="get">
     <input type="number" name="firstNumber" placeholder="so dau tien">
     <select name="operator">
-      <option value="addition">+</option>
-      <option value="subtraction">-</option>
-      <option value="multiplication">*</option>
-      <option value="division">/</option>
+        <option value="addition">+</option>
+        <option value="subtraction">-</option>
+        <option value="multiplication">*</option>
+        <option value="division">/</option>
     </select>
     <input type="number" name="secondNumber" placeholder="so thu hai">
     <input type="submit" value="Tinh">
-  </form>
-  <p> Results: ${results}</p>
-  </body>
+</form>
+<p> Results:
+    <c:if test="${results != null}">
+        ${results}
+    </c:if>
+</p>
+</body>
 </html>

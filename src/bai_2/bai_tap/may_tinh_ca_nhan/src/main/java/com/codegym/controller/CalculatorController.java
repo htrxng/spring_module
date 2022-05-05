@@ -12,18 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CalculatorController {
     @Autowired
-ICalculatorService iCalculatorService;
+    ICalculatorService iCalculatorService;
 
     @GetMapping("/")
     public String goIndex() {
         return "index";
     }
-    @GetMapping("/abc")
+
+    @GetMapping("/calculate")
     public String calculate(@RequestParam("firstNumber") Integer firstNumber,
                             @RequestParam("secondNumber") Integer secondNumber,
                             @RequestParam("operator") String operator,
                             Model model) {
-        model.addAttribute("results",this.iCalculatorService.calcutator(firstNumber,secondNumber,operator));
+        model.addAttribute("results", this.iCalculatorService.calcutator(firstNumber, secondNumber, operator));
         return "index";
     }
 }
