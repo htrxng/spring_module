@@ -11,8 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ProductController {
-    final
-    IProductService iProductService;
+    @Autowired
+    private IProductService iProductService;
 
     public ProductController(IProductService iProductService) {
         this.iProductService = iProductService;
