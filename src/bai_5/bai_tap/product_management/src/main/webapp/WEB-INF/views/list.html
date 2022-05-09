@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+
+ <h1 th:replace="~{layout :: title}"></h1>
+ <button><a th:href="@{/create}">Add new Product</a></button>
+<form action="/search" >
+    <input type="text" name="query" placeholder="Search by Name">
+    <input type="submit" value="Search">
+</form>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Stt</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Manufacturer</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product, stt : ${productList}">
+        <th scope="row" th:text="${stt.count}"></th>
+        <td th:text="${product.productName}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td th:text="${product.manufacturer}"></td>
+        <td>
+            <button type="button" class="btn btn-success"><a th:href="@{/{id}/detailForm(id=${product.productId})}">Detail</a></button>
+            <button type="button" class="btn btn-warning"><a th:href="@{/{id}/editForm(id=${product.productId})}">Edit</a></button>
+            <button type="button" class="btn btn-danger"><a th:href="@{/{id}/deleteForm(id=${product.productId})}">Delete</a></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+</html>
