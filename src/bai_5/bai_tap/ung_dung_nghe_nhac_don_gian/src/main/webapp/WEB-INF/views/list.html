@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<h1 th:replace="~{layout :: title}"></h1>
+<button><a th:href="@{/upload}">Upload new Song</a></button>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Stt</th>
+        <th scope="col">Song</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Type</th>
+        <th scope="col">Link</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="song, stt : ${songList}">
+        <th scope="row" th:text="${stt.count}"></th>
+        <td th:text="${song.songName}"></td>
+        <td th:text="${song.artist}"></td>
+        <td th:text="${song.type}"></td>
+         <td >
+             <audio class="audio_mp3" th:src="${song.link}" ></audio>
+         </td>
+<!--        <td th:text="${song.link}"></td>-->
+        <td>
+            <button type="button" class="btn btn-success"><a th:href="@{/{id}/detailForm(id=${song.id})}">Detail</a></button>
+            <button type="button" class="btn btn-warning"><a th:href="@{/{id}/editForm(id=${song.id})}">Edit</a></button>
+            <button type="button" class="btn btn-danger"><a th:href="@{/{id}/deleteForm(id=${song.id})}">Delete</a></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+</html>

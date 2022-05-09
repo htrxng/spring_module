@@ -61,7 +61,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public List<Product> findAllByQuery(String query) {
-        List<Product> foundedProducts = null;
+        List<Product> foundedProducts = new ArrayList<>();
         for (Product p: productList
              ) {
             if(p.getProductName().contains(query)) {

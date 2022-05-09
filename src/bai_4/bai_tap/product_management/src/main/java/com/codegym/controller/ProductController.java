@@ -71,8 +71,8 @@ public class ProductController {
 
     @GetMapping("search")
     public String search(@RequestParam String query,Model model) {
-
-        model.addAttribute("product",iProductService.findAllByQuery(query));
+        model.addAttribute("productList",iProductService.findAllByQuery(query));
+        System.out.println(iProductService.findAllByQuery(query));
         return "list";
     }
 }
