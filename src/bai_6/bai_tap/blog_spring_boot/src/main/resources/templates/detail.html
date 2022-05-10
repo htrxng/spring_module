@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<nav th:replace="~{layout :: header}"></nav>
+<div style="margin: 5% 10% 0 10%" >
+<!--<h2 style="text-align: center">Detail blog</h2>-->
+<div style="text-align: center; color: crimson">
+    <h2> <label th:text="${blog.titleBlog}"></label> </h2>
+</div>
+<div style="text-align: right; margin-right: 10px; font-style: italic">
+    <label th:text="${blog.author}"></label>
+</div>
+
+<div style="margin: 10px">
+    <label th:text="${blog.content}"></label>
+</div>
+<button type="button" class="btn btn-success mt-4 mx-2"><a href="/list">Back</a></button>
+</div>
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+</html>

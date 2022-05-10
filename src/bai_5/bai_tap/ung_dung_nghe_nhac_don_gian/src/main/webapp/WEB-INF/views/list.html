@@ -24,14 +24,19 @@
         <td th:text="${song.songName}"></td>
         <td th:text="${song.artist}"></td>
         <td th:text="${song.type}"></td>
-<!--         <td >-->
-<!--             <audio class="audio_mp3" th:src="${song.link}" ></audio>-->
-<!--         </td>-->
-        <td th:text="${song.link}"></td>
         <td>
-            <button type="button" class="btn btn-success"><a th:href="@{/{id}/detailForm(id=${song.id})}">Detail</a></button>
-            <button type="button" class="btn btn-warning"><a th:href="@{/{id}/editForm(id=${song.id})}">Edit</a></button>
-            <button type="button" class="btn btn-danger"><a th:href="@{/{id}/deleteForm(id=${song.id})}">Delete</a></button>
+            <audio controls>
+                <source th:src="${song.link}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <button type="button" class="btn btn-dark"><a th:href="@{/{id}/detailForm(id=${song.id})}">Detail</a>
+            </button>
+            <button type="button" class="btn btn-warning"><a th:href="@{/{id}/editForm(id=${song.id})}">Edit</a>
+            </button>
+            <button type="button" class="btn btn-danger"><a th:href="@{/{id}/deleteForm(id=${song.id})}">Delete</a>
+            </button>
         </td>
     </tr>
     </tbody>

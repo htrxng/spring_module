@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body style="background: lightseagreen">
+<nav th:replace="~{layout :: header}"></nav>
+<div th:replace="~{layout :: listTitle}"></div>
+<button type="button" class="btn btn-white"><a th:href="@{/upload}">+ Upload new blog</a></button>
+<table class="table align-middle mb-0 bg-white" >
+    <thead class="bg-light">
+    <tr>
+        <th>Stt</th>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Summary</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog, stt : ${blogList}">
+        <th scope="row" th:text="${stt.count}"></th>
+        <td th:text="${blog.author}">
+            <div class="d-flex align-items-center">
+                <img
+                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                />
+            </div>
+        </td>
+        <td>
+            <p class="fw-normal mb-1" th:text="${blog.titleBlog}"></p>
+        </td>
+        <td th:text="${blog.summary}"></td>
+        <td>
+            <button type="button" class="btn btn-dark"><a th:href="@{/{id}/detailForm(id=${blog.blogId})}">Detail</a>
+            </button>
+            <button type="button" class="btn btn-warning"><a th:href="@{/{id}/editForm(id=${blog.blogId})}">Update</a>
+            </button>
+            <button type="button" class="btn btn-danger"><a th:href="@{/{id}/deleteForm(id=${blog.blogId})}">Delete</a>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+
+</html>
