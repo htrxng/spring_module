@@ -12,7 +12,7 @@
     <fieldset class="w-75 mx-auto">
         <legend class="text-center my-4"> <span class="text-secondary">Edit blog</span></legend>
         <div>
-            <input type="hidden" th:field="*{blogId}" disabled>
+            <input type="hidden" th:field="*{blogId}" >
         </div>
 
         <div class="form-outline w-25 mx-auto">
@@ -23,6 +23,12 @@
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="author" type="text" th:field="*{author}"/>
             <label class="form-label" for="author">Author</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select  th:field="*{category}" class="form-select" aria-label="Disabled select example" >
+                <option value="0" th:text="---Category---"></option>
+                <option th:each="category : ${categoryList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+            </select>
         </div>
         <div class="form-outline w-100 mx-auto my-4">
             <textarea class="form-control" id="summary" type="text" th:field="*{summary}"></textarea>

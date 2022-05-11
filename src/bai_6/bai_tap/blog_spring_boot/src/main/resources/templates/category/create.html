@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<nav th:replace="~{layout :: header}"></nav>
+
+<form th:action="@{/addCategory}" th:object="${category}" method="post">
+    <fieldset class="w-75 mx-auto">
+        <legend class="text-center my-4"> <span class="text-secondary">Add category</span></legend>
+        <div>
+            <input type="hidden" th:field="*{categoryId}" disabled>
+        </div>
+
+        <div class="form-outline w-25 mx-auto">
+            <input class="form-control" id="title" type="text" th:field="*{categoryName}"/>
+            <label class="form-label" for="title">Category Name</label>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">Create </button>
+        <button type="button" class="btn btn-warning mt-4 mx-2"><a href="/list">Cancel</a></button>
+    </div>
+
+</form>
+
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+</html>

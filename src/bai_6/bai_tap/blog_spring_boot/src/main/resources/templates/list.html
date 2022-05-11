@@ -6,17 +6,63 @@
     <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
 </head>
 <body style="background: lightseagreen">
-<nav th:replace="~{layout :: header}"></nav>
+<nav th:replace="~{layout :: header}">
+    <!--    <form action="#" th:object="${blog}" th:replace="~{layout :: search}">-->
+    <!--    <div>-->
+    <!--        <select  th:field="*{category}" class="form-select" aria-label="Disabled select example" >-->
+    <!--            <option value="0" th:text="-&#45;&#45;Category-&#45;&#45;"></option>-->
+    <!--            <option th:each="category : ${categoryList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>-->
+    <!--        </select>-->
+    <!--    </div>-->
+    <!--    </form>-->
+</nav>
 <div th:replace="~{layout :: listTitle}"></div>
-<button type="button" class="btn btn-white"><a th:href="@{/upload}">+ Upload new blog</a></button>
-<table class="table align-middle mb-0 bg-white" >
+<a class="btn btn-white" th:href="@{/upload}">+ Upload new blog</a>
+<a class="btn btn-white" th:href="@{/createNewCategory}">+ create new category</a>
+<form class="input-group w-auto my-auto d-none d-sm-flex" th:fragment="search" th:action="@{/search}">
+    <input
+            autocomplete="off"
+            type="search"
+            class="form-control rounded"
+            placeholder="Search"
+            style="min-width: 125px;"
+            name="keyWord"
+    />
+    <button type="submit" class="btn btn-white">Search</button>
+<!--    <span class="input-group-text border-0 d-none d-lg-flex"-->
+<!--    ><i class="fas fa-search"></i-->
+<!--    ></span>-->
+
+    <div class="dropdown">
+        <a
+                class="btn btn-black dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+        >
+            Category
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" th:each="blog, stt : ${blogList}" >
+            <li><a href="#" th:text="${blog.category.categoryName}"></a></li>
+<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+        </ul>
+    </div>
+</form>
+<h2 style="text-align: center">List Blog</h2>
+<table class="table align-middle mb-0 bg-white">
     <thead class="bg-light">
     <tr>
         <th>Stt</th>
         <th>Author</th>
         <th>Title</th>
+        <th>Category</th>
         <th>Summary</th>
-        <th>Actions</th>
+        <th colspan="3">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -35,18 +81,35 @@
         <td>
             <p class="fw-normal mb-1" th:text="${blog.titleBlog}"></p>
         </td>
+        <td th:text="${blog.category.categoryName}">
+        </td>
         <td th:text="${blog.summary}"></td>
         <td>
-            <button type="button" class="btn btn-dark"><a th:href="@{/{id}/detailForm(id=${blog.blogId})}">Detail</a>
-            </button>
-            <button type="button" class="btn btn-warning"><a th:href="@{/{id}/editForm(id=${blog.blogId})}">Update</a>
-            </button>
-            <button type="button" class="btn btn-danger"><a th:href="@{/{id}/deleteForm(id=${blog.blogId})}">Delete</a>
-            </button>
+            <a class="btn btn-success" th:href="@{/{id}/detailForm(id=${blog.blogId})}">Detail</a>
+        </td>
+        <td>
+            <a class="btn btn-warning" th:href="@{/{id}/editForm(id=${blog.blogId})}">Update</a>
+        </td>
+        <td>
+            <a class="btn btn-danger" th:href="@{/{id}/deleteForm(id=${blog.blogId})}">Delete</a>
         </td>
     </tr>
     </tbody>
 </table>
+<div class="row">
+    <div class="row-lg-12">
+        <a th:if="${blogList.hasPrevious()}"
+        th:href="@{/list(page=${blogList.number - 1 }, keyword=${keywordVal})}">
+            Previous
+        </a>
+        <span th:text="${blogList.number + 1 }"></span>/
+        <span th:text="${blogList.totalPages}"></span>
+        <a th:if="${blogList.hasNext()}"
+           th:href="@{/list(page=${blogList.number + 1 }, keyword=${keywordVal})}">
+            Next
+        </a>
+    </div>
+</div>
 </body>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 

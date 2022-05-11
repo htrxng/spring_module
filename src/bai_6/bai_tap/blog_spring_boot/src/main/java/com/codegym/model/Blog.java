@@ -15,6 +15,18 @@ public class Blog {
     private String content;
     private String author;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id",referencedColumnName = "categoryId")
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Blog(Integer blogId, String titleBlog, String summary, String content, String author) {
         this.blogId = blogId;
         this.titleBlog = titleBlog;
