@@ -22,7 +22,7 @@ public class SongDto implements Validator {
     private String singer;
     @NotEmpty(message = "type can not be empty")
     @Size(max = 1000, message = "must be less than 1000 character!")
-    @Pattern(regexp = "^([\\w]*[\\s]*[\\w]*[,]*)*$", message = "type can not contain special character except [,] ")
+    @Pattern(regexp = "^([\\w]*[\\s]*[\\w]*[,]*)*$", message = "name can not contain special character")
     private String type;
 
     @Override
