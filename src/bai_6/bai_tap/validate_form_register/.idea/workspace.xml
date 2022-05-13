@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4bf45887-4ba5-4f7d-86ea-93d787bdabf6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../bai_1/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../bai_1/thuc_hanh/customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../bai_5/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../bai_5/thuc_hanh/customer-management" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="293UVYyVwbcR0hu0xjDXqiXjne9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="exceleditor.install" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../bai_7/bai_tap/validate_form_register" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ValidateFormRegisterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="validate_form_register.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.codegym.ValidateFormRegisterApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4bf45887-4ba5-4f7d-86ea-93d787bdabf6" name="Default Changelist" comment="" />
+      <created>1652341286528</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652341286528</updated>
+      <workItem from="1652341289555" duration="8444000" />
+      <workItem from="1652354036044" duration="644000" />
+      <workItem from="1652411042754" duration="8687000" />
+      <workItem from="1652428624405" duration="38000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1652347117316">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1652347117316" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1652428660326">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1652428660326" />
+    <state width="604" height="2" key="GridCell.Tab.0.bottom" timestamp="1652428607495">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="604" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1652428607495" />
+    <state width="604" height="2" key="GridCell.Tab.0.center" timestamp="1652428607495">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="604" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1652428607495" />
+    <state width="604" height="2" key="GridCell.Tab.0.left" timestamp="1652428607495">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="604" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1652428607495" />
+    <state width="604" height="2" key="GridCell.Tab.0.right" timestamp="1652428607495">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="604" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1652428607495" />
+    <state width="604" height="2" key="GridCell.Tab.1.bottom" timestamp="1652428607496">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="604" height="2" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1652428607496" />
+    <state width="604" height="2" key="GridCell.Tab.1.center" timestamp="1652428607495">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="604" height="2" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1652428607495" />
+    <state width="604" height="2" key="GridCell.Tab.1.left" timestamp="1652428607495">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="604" height="2" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1652428607495" />
+    <state width="604" height="2" key="GridCell.Tab.1.right" timestamp="1652428607495">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="604" height="2" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1652428607495" />
+    <state x="0" y="26" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1652345337313">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="0" y="26" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1652345337313" />
+    <state x="209" y="73" key="new project wizard" timestamp="1652411799148">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="209" y="73" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1652411799148" />
+  </component>
+</project>

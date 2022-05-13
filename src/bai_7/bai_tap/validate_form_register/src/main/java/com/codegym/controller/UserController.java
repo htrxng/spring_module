@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping("/home")
     public String goFormRegister(Model model) {
-        model.addAttribute("userDto",new UserDto());
+        model.addAttribute("userDto", new UserDto());
         return "index";
     }
 
@@ -29,16 +29,16 @@ public class UserController {
     public String createUser(@ModelAttribute @Validated UserDto userDto,
                              BindingResult bindingResult, // object chứa lỗi
                              RedirectAttributes redirectAttributes,
-                             Model model){
-        new UserDto().validate(userDto,bindingResult);
-        if(bindingResult.hasFieldErrors()) {
+                             Model model) {
+        new UserDto().validate(userDto, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
             return "index";
         } else {
             User user = new User();
-            BeanUtils.copyProperties(userDto,user);
+            BeanUtils.copyProperties(userDto, user);
             iUserService.save(user);
-            model.addAttribute("message","registry " + user.getLastName() +  " successful!");
+            model.addAttribute("message", "registry " + user.getLastName() + " successful!");
             return "result";
         }
     }
-    }
+}

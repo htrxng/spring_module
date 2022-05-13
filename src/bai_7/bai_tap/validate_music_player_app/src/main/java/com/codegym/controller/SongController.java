@@ -22,37 +22,39 @@ public class SongController {
 
     @GetMapping("/home")
     public String goHome(Model model) {
-        model.addAttribute("songList",iSongService.findAll() );
+        model.addAttribute("songList", iSongService.findAll());
         return "list";
     }
 
     @GetMapping(value = "/add")
-    public String goCreate(Model model){
-        model.addAttribute("songDto", new  SongDto());
+    public String goCreate(Model model) {
+        model.addAttribute("songDto", new SongDto());
         return "/create";
     }
+
     @PostMapping(value = "/addToList")
     public String addToList(@ModelAttribute @Validated SongDto songDto,
                             BindingResult bindingResult,
                             RedirectAttributes redirectAttributes,
                             Model model) {
-        new SongDto().validate(songDto,bindingResult);
-        if(bindingResult.hasFieldErrors()){
+        new SongDto().validate(songDto, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
             return "/create";
         } else {
             Song song = new Song();
-            BeanUtils.copyProperties(songDto,song);
+            BeanUtils.copyProperties(songDto, song);
             iSongService.save(song);
-            redirectAttributes.addFlashAttribute("message","add " + " successful!");
+            redirectAttributes.addFlashAttribute("message", "add " + " successful!");
             return "redirect:/home";
         }
     }
+
     @GetMapping(value = "/{id}/editForm")
     public String goEditForm(Model model, @PathVariable String id) {
         Song song = iSongService.findById(id);
         SongDto songDto = new SongDto();
-        BeanUtils.copyProperties(song,songDto);
-        model.addAttribute("songDto",songDto);
+        BeanUtils.copyProperties(song, songDto);
+        model.addAttribute("songDto", songDto);
         return "/edit";
     }
 
@@ -61,8 +63,8 @@ public class SongController {
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes,
                          Model model) {
-        new SongDto().validate(songDto,bindingResult);
-        if(bindingResult.hasFieldErrors()) {
+        new SongDto().validate(songDto, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
             return "/edit";
         } else {
             Song song = new Song();

@@ -5,7 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1 style="text-align: center; color: cornflowerblue" >Add new Song</h1>
+<a th:href="@{/home}">Back Home</a>
 <form action="#" th:action="@{/update}" th:object="${songDto}" method="post">
     <input type="hidden" th:field="*{id}">
     <div>
@@ -14,7 +15,7 @@
         <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
     </div>
     <div>
-        <label for="singer" > Singer </label>
+        <label for="singer"> Singer </label>
         <input id="singer" type="text" th:field="*{singer}">
         <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
     </div>
@@ -25,7 +26,7 @@
     </div>
     <div>
         <input type="submit" value="save">
-        <input type="reset"  value="cancel" >
+        <input type="reset" value="cancel">
     </div>
 </form>
 </body>

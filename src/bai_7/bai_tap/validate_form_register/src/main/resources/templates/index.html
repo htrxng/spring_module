@@ -21,16 +21,16 @@
 </head>
 <body>
 <form th:action="@{/register}" th:object="${userDto}" method="post" autocomplete="off">
-    <div> <input type="hidden" th:field="*{id}" disabled> </div>
+    <div><input type="hidden" th:field="*{id}" disabled></div>
     <div>
         <span>First Name:</span>
-         <input type="text" th:field="*{firstName}">
-        <p style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></p>
+        <input type="text" th:field="*{firstName}">
+        <p style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
     </div>
     <div>
         <span>Last Name</span>
         <input type="text" th:field="*{lastName}">
-        <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" ></p>
+        <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
     </div>
     <div>
         <span>Phone Number</span>
@@ -46,7 +46,7 @@
     <div>
         <span>Email</span>
         <input type="text" th:field="*{email}">
-        <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></p>
+        <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
     </div>
     <input type="submit" value="Register">
 </form>
