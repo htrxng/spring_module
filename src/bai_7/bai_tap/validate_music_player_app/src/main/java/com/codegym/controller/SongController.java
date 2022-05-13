@@ -35,9 +35,7 @@ public class SongController {
     @PostMapping(value = "/addToList")
     public String addToList(@ModelAttribute @Validated SongDto songDto,
                             BindingResult bindingResult,
-                            RedirectAttributes redirectAttributes,
-                            Model model) {
-        new SongDto().validate(songDto, bindingResult);
+                            RedirectAttributes redirectAttributes) {
         if (bindingResult.hasFieldErrors()) {
             return "/create";
         } else {
@@ -61,9 +59,7 @@ public class SongController {
     @PostMapping(value = "/update")
     public String update(@ModelAttribute @Validated SongDto songDto,
                          BindingResult bindingResult,
-                         RedirectAttributes redirectAttributes,
-                         Model model) {
-        new SongDto().validate(songDto, bindingResult);
+                         RedirectAttributes redirectAttributes) {
         if (bindingResult.hasFieldErrors()) {
             return "/edit";
         } else {

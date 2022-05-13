@@ -9,7 +9,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
-public class SongDto implements Validator {
+public class SongDto {
     private Integer id;
 
     @NotEmpty(message = "name can not be empty")
@@ -22,16 +22,7 @@ public class SongDto implements Validator {
     private String singer;
     @NotEmpty(message = "type can not be empty")
     @Size(max = 1000, message = "must be less than 1000 character!")
-    @Pattern(regexp = "^([\\w]*[\\s]*[\\w]*[,]*)*$", message = "name can not contain special character")
+    @Pattern(regexp = "^([\\w]*[\\s]*[\\w]*[,]*)*$", message = "type can not contain special character")
     private String type;
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
-    }
 }
