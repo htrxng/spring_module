@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+            rel="stylesheet"
+    />
+</head>
+<body>
+<a class="btn" th:href="@{/add}">Add new Song</a>
+<!--<script>myStopFunction()</script>-->
+<h3 id="message" style="color: gold;" th:text="${message}" ></h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Stt</th>
+        <th scope="col">Name</th>
+        <th scope="col">Singer</th>
+        <th scope="col">Type</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+<tr th:each="song, stt : ${songList}">
+    <th scope="row" th:text="${stt.count}"></th>
+    <td th:text="${song.name}"></td>
+    <td th:text="${song.singer}"></td>
+    <td th:text="${song.type}"></td>
+    <td>
+        <a class="btn" th:href="@{/{id}/editForm(id=${song.id})}">Edit</a>
+    </td>
+</tr>
+    </tbody>
+</table>
+</body>
+<!--<script>-->
+<!--    const myTimeout = setTimeout(showMessage, 3000);-->
+
+<!--    function showMessage() {-->
+<!--        document.getElementById("message").innerHTML = "Happy Birthday!"-->
+<!--    }-->
+
+<!--    function myStopFunction() {-->
+<!--        clearTimeout(myTimeout);-->
+<!--    }-->
+<!--</script>-->
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+></script>
+</html>

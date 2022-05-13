@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/update}" th:object="${songDto}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label for="name"> Name </label>
+        <input id="name" type="text" th:field="*{name}">
+        <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    </div>
+    <div>
+        <label for="singer" > Singer </label>
+        <input id="singer" type="text" th:field="*{singer}">
+        <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    </div>
+    <div>
+        <label for="type"> Type </label>
+        <input id="type" type="text" th:field="*{type}">
+        <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    </div>
+    <div>
+        <input type="submit" value="save">
+        <input type="reset"  value="cancel" >
+    </div>
+</form>
+</body>
+</html>
