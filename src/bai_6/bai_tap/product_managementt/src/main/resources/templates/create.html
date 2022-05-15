@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="#" th:action="@{/addToList}" th:object="${product}" method="post">
+<form action="#" th:action="@{/addToList}" th:object="${productDto}" method="post">
     <div>
         <label for="id">Id</label>
         <input id="id" type="number" th:field="*{productId}">
@@ -13,18 +13,22 @@
     <div>
         <label for="name">Name:</label>
         <input id="name" type="text" th:field="*{productName}">
+        <p style="color: red" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></p>
     </div>
     <div>
          <label for="price">Price:</label>
         <input id="price" type="number" th:field="*{price}">
+        <p style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
     </div>
     <div>
          <label for="quantity">Quantity: </label>
         <input id="quantity" type="number" th:field="*{quantity}">
+        <p style="color: red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></p>
     </div>
     <div>
         <label for="manufacturer"> Manufacturer: </label>
         <input id="manufacturer" type="text" th:field="*{manufacturer}">
+        <p style="color: red" th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}"></p>
     </div>
     <div>
         <input type="submit" value="Add">

@@ -1,14 +1,15 @@
 package com.codegym.controller;
 
+import com.codegym.dto.ProductDto;
 import com.codegym.model.Product;
 import com.codegym.service.IProductService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -30,15 +31,21 @@ public class ProductController {
 
     @GetMapping(value = "/create")
     public String goCreate(Model model) {
-        model.addAttribute("product",new Product());
+        model.addAttribute("productDto",new ProductDto());
         return "create";
     }
 
-    @PostMapping(value = "addToList")
-    public String addToList(Product product, RedirectAttributes redirectAttributes) {
-        iProductService.save(product);
-        redirectAttributes.addFlashAttribute("success","add successfully!");
-        return "redirect:/list";
+    @PostMapping(value = "/addToList")
+    public String addToList(@ModelAttribute @Validated ProductDto productDto,
+                            BindingResult bindingResult) {
+        if(bindingResult.hasFieldErrors()) {
+            return "create";
+        } else {
+            Product product1 = new Product();
+            BeanUtils.copyProperties(productDto, product1);
+            iProductService.save(product1);
+            return "redirect:/list";
+        }
     }
 
     @GetMapping("/{id}/deleteForm")
@@ -56,14 +63,27 @@ public class ProductController {
 
     @GetMapping("/{id}/editForm")
     public String goEdit(@PathVariable int id, Model model) {
-        model.addAttribute("product",iProductService.findById(id));
+        Product product = iProductService.findById(id);
+        ProductDto productDto = new ProductDto();
+        BeanUtils.copyProperties(product,productDto);
+        model.addAttribute("productDto",productDto);
         return "edit";
     }
 
     @PostMapping("/update")
-    public String update(Product product) {
-        iProductService.save(product);
-        return "redirect:/list";
+    public String update(@ModelAttribute @Validated ProductDto productDto,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes
+                         ) {
+        if(bindingResult.hasFieldErrors()) {
+            return "/edit";
+        } else {
+         Product product = new Product();
+         BeanUtils.copyProperties(productDto,product);
+         iProductService.save(product);
+            redirectAttributes.addFlashAttribute("message", "update successful! ");
+            return "redirect:/list";
+        }
     }
 
     @GetMapping("/{id}/detailForm")
