@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/add}">+ add new book</a>
+<table>
+    <thead>
+    <tr>
+        <th>Stt</th>
+        <th>Tên</th>
+        <th>Tác giả</th>
+        <th>Số Lượng</th>
+        <th>Hoạt động</th>
+    </tr>
+    <tbody>
+    <tr th:each="book,stt : ${bookList}">
+        <th th:text="${stt.count}"></th>
+        <td th:text="${book.bookName}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.quantity}"></td>
+        <td>
+            <a th:href="@{/{id}/detailBook(id=${book.bookId})}">Mượn sách</a>
+        </td>
+    </tr>
+    </tbody>
+    </thead>
+</table>
+</body>
+</html>

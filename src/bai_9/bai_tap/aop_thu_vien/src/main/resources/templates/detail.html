@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h2><label th:text="${book.bookName}"></label></h2>
+</div>
+<div>
+    <label th:text="${book.author}"></label>
+</div>
+<div>
+    <label th:text="${book.manufacturer}"></label>
+</div>
+<a th:href="@{/{id}/lendBook(id=${book.bookId})}">Mượn</a>
+<a href="/home">Huỷ</a>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <a href="/home">Trang chủ</a>
+    <thead>
+    <tr>
+        <th>Stt</th>
+        <th>Tên</th>
+        <th>Tác giả</th>
+        <th>Mã trả sách</th>
+<!--        <th>Hoạt động</th>-->
+    </tr>
+    <tbody>
+    <tr th:each="bookBorrowed,stt : ${bookBorrowedList}">
+        <th th:text="${stt.count}"></th>
+        <td th:text="${bookBorrowed.book.bookName}"></td>
+        <td th:text="${bookBorrowed.book.author}"></td>
+        <td th:text="${bookBorrowed.lendCode}"></td>
+<!--        <td>-->
+<!--            <a th:href="@{/{id}/payBookForm(id=${bookBorrowed.voucherId})}">Trả sách</a>-->
+<!--        </td>-->
+    </tr>
+    </tbody>
+    </thead>
+</table>
+<form th:action="/payBook" method="post">
+    <input type="text" name="codeLending" placeholder="nhập mã trả sách">
+    <button type="submit">Trả</button>
+</form>
+</body>
+</html>
