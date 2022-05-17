@@ -11,8 +11,7 @@ public interface IBookService {
 
     Book findById(Integer id);
 
-    String lendBookById(Integer id);
+    Boolean lendBookById(Integer id);
 
-
-    String payBookByCodeLending(Integer id, String codeLending);
+    void payBook(Book book);
 }

@@ -13,5 +13,8 @@ public interface IBookLendVoucherService {
 
     void deleteById(Integer id);
 
-    String findByCodeLending(Long codeLending);
+
+    BookLendVoucher findByLendCode(Long lendCode);
+
+    void delete(BookLendVoucher bookLendVoucher);
 }

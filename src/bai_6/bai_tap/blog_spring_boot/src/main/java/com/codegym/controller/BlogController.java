@@ -111,7 +111,7 @@ public class BlogController {
     @GetMapping("/{id}/detailForm")
     public String goDetail(@PathVariable Integer id, Model model) {
         model.addAttribute("blog", iBlogService.findById(id));
-        return "/blog/detail";
+        return "/blog/det22ail";
     }
 
 }

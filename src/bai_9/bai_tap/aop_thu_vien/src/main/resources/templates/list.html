@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<a th:href="@{/add}">+ add new book</a>
+<a th:href="@{/addBook}">+ thêm sách</a>
+<a th:href="@{/listBookBorrowed}"> danh sách sách đang được mượn</a>
+<h2 th:text="${message}"></h2>
 <table>
     <thead>
     <tr>

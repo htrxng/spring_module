@@ -28,8 +28,8 @@
     </tbody>
     </thead>
 </table>
-<form th:action="/payBook" method="post">
-    <input type="text" name="codeLending" placeholder="nhập mã trả sách">
+<form th:action="@{/payBook}" method="post">
+    <input type="text" name="lendingCode" placeholder="nhập mã trả sách">
     <button type="submit">Trả</button>
 </form>
 </body>

@@ -34,17 +34,13 @@ public class BookLendVoucherService implements IBookLendVoucherService {
     }
 
     @Override
-    public String findByCodeLending(Long codeLending) {
-        String notice = null;
-        BookLendVoucher bookLendVoucher = iBookLendVoucherRepository.findByCodeLending(codeLending);
-        if(bookLendVoucher != null) {
-            notice = "bạn đã trả sách thành công!";
-            Book book = bookLendVoucher.getBook();
-            book.setQuantity(book.getQuantity()+1);
-            iBookLendVoucherRepository.delete(bookLendVoucher);
-        } else {
-            notice = "bạn đã nhập mã sai";
-        }
-        return notice;
+    public BookLendVoucher findByLendCode(Long lendCode) {
+        return iBookLendVoucherRepository.findByLendCode(lendCode);
     }
+
+    @Override
+    public void delete(BookLendVoucher bookLendVoucher) {
+        iBookLendVoucherRepository.delete(bookLendVoucher);
+    }
+
 }
