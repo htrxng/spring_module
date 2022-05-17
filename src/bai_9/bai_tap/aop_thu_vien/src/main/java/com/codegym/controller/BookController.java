@@ -82,7 +82,7 @@ public class BookController {
         } else {
             message = "mã trả sách không đúng, hãy thử lại";
         }
-        redirectAttributes.addFlashAttribute(message);
+        redirectAttributes.addFlashAttribute("message", message);
         System.out.println(message);
         return "redirect:/home";
     }
