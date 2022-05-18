@@ -55,11 +55,12 @@ public class BlogService implements IBlogService {
     public Page<Blog> findAllPaging(Pageable pageable) {
         return iBlogRepository.findAll(pageable);
     }
-//
-//    @Override
-//    public B findAllBlogByTitleAndCategory(String keyword, Category category) {
-//        return null;
-//    }
+
+    @Override
+    public List<Blog> findAllBLogByCategory_CategoryId(Integer id) {
+        return iBlogRepository.findAllByCategory_CategoryId(id);
+    }
+
 
 
 }
