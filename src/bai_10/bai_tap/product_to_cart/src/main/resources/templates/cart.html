@@ -17,16 +17,21 @@
             <th>Item</th>
             <th>Quantity</th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
-        <tr th:each="product: ${cart.products}">
+        <tr th:each="product: ${cart.productDtoMap}">
             <td th:text="${product.getKey().name}"></td>
             <td>
-                <a id="decrease_button" th:text="${'-'}"></a>
+                <a id="decrease_button" th:href="@{/decrease/__${product.getKey().id}__(action='cart')}"
+                   th:text="${'-'}"></a>
                 <span th:text="${product.getValue()}"></span>
-                <a id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='show')}"
+                <a id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='cart')}"
                    th:text="${'+'}"></a>
             </td>
             <td th:text="${product.getKey().price}"></td>
+            <td>
+                <a class="btn btn-success" th:href="@{/{id}/detailForm(id=${product.getKey().id})}">Detail</a>
+            </td>
         </tr>
         <tr>
             <td>Total</td>

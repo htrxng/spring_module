@@ -28,30 +28,13 @@
             style="min-width: 125px;"
             name="keyWord"
     />
-    <button type="submit" class="btn btn-white">Search</button>
-<!--    <span class="input-group-text border-0 d-none d-lg-flex"-->
-<!--    ><i class="fas fa-search"></i-->
-<!--    ></span>-->
-
     <div class="dropdown">
-        <a
-                class="btn btn-black dropdown-toggle"
-                href="#"
-                role="button"
-                id="dropdownMenuLink"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-        >
-            Category
-        </a>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" th:each="blog, stt : ${blogList}" >
-            <li><a href="#" th:text="${blog.category.categoryName}"></a></li>
-<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-        </ul>
+        <select  class="form-select" aria-label="Disabled select example" name="categoryId">
+            <option value="0" th:text="---Category---"></option>
+            <option th:each="category : ${categoryList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+        </select>
     </div>
+    <button type="submit" class="btn btn-black">Search</button>
 </form>
 <h2 style="text-align: center">List Blog</h2>
 

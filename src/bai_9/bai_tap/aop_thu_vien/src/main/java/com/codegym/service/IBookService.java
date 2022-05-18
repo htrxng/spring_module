@@ -1,5 +1,6 @@
 package com.codegym.service;
 
+import com.codegym.exception.RunoutQuantity;
 import com.codegym.model.Book;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface IBookService {
 
     Book findById(Integer id);
 
-    Boolean lendBookById(Integer id);
+    Boolean lendBookById(Integer id) throws RunoutQuantity;
 
     void payBook(Book book);
 }

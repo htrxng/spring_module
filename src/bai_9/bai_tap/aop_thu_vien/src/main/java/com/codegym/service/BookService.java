@@ -1,5 +1,6 @@
 package com.codegym.service;
 
+import com.codegym.exception.RunoutQuantity;
 import com.codegym.model.Book;
 import com.codegym.model.BookLendVoucher;
 import com.codegym.repository.IBookRepository;
@@ -29,16 +30,17 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public Boolean lendBookById(Integer id) {
-        Boolean flag;
+    public Boolean lendBookById(Integer id) throws RunoutQuantity {
+        Boolean flag= false;
         Book book = iBookRepository.findById(id).orElse(null);
         if (book != null && book.getQuantity() > 0) {
             book.setQuantity(book.getQuantity() - 1);
             iBookRepository.save(book);
             flag = true;
         } else {
-            flag = false;
+            throw new RunoutQuantity("hết sách rồi");
         }
+
         return flag;
     }
 

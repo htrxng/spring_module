@@ -6,7 +6,7 @@
 </head>
 <body>
 <p>
-    <a href="/shopping-cart">Your cart</a>
+    <a th:href="@{/cart/shopping-cart}">Your cart</a>
 </p>
 <table border="1">
     <tr>
@@ -14,7 +14,7 @@
         <td>Price</td>
         <td>Add To Cart</td>
     </tr>
-    <th:block th:each="product:${products}">
+    <th:block th:each="product:${productList}">
         <tr>
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}"></td>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <h2>Name :
+        <label th:text="${product.name}"></label>
+    </h2>
+    <h2>Price :
+        <label th:text="${product.price}"></label>
+    </h2>
+    <h2>Description:
+        <label th:text="${product.description}"></label>
+    </h2>
+</div>
+<div>
+<button type="button" class="btn btn-success mt-4 mx-2"><a href="/cart/shopping-cart">Back</a></button>
+</div>
+</body>
+</html>

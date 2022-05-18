@@ -9,12 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,14 +22,13 @@ public class BlogController {
     @Autowired
     private ICategoryService iCategoryService;
 
-    // chuyển đến list
-//    @GetMapping(value = "/list")
-//    public String showList(Model model){
-//        model.addAttribute("blogList",this.iBlogService.findAll());
-//        model.addAttribute("blog",new Blog());
-//        model.addAttribute("categoryList",this.iCategoryService.findAll());
-//        return "/list";
-//    }
+
+    // set thuộc tính findAllCategory cho modelAttribute;
+    @ModelAttribute("categoryList")
+    public List<Category> findAllCategory(){
+        return this.iCategoryService.findAll();
+    }
+
     @GetMapping(value = "/list")
     public String showList(Model model,
                            @PageableDefault(value = 2) Pageable pageable,
@@ -41,13 +38,24 @@ public class BlogController {
 
         model.addAttribute("blogList", this.iBlogService.findAllByPage(keywordVal, pageable));
         model.addAttribute("keywordVal", keywordVal);
-        model.addAttribute("categoryList", this.iCategoryService.findAll());
+//        model.addAttribute("categoryList", this.iCategoryService.findAll());
         return "/list";
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam("keyWord") String keyword, Model model) {
-        model.addAttribute("blogList", iBlogService.findAllBlogByTitle(keyword));
+    public String search(@RequestParam("categoryId") String categoryId , Model model,
+                         @PageableDefault(value = 2) Pageable pageable,
+                         @RequestParam Optional<String> keyWord) {
+        String keywordVal = keyWord.orElse("");
+
+        if (!keywordVal.equals("")) {
+           Category category =  iCategoryService.findById(Integer.parseInt(categoryId));
+            model.addAttribute("keywordVal", keywordVal);
+            model.addAttribute("blogList", iBlogService.findAllBlogByTitleAndCategoryAndPage(keywordVal, category,pageable));
+        } else {
+            model.addAttribute("blogList", this.iBlogService.findAllByPage(keywordVal, pageable));
+            model.addAttribute("keywordVal", keywordVal);
+        }
         return "/list";
     }
 
@@ -55,7 +63,6 @@ public class BlogController {
     @GetMapping(value = "/upload")
     public String goCreate(Model model) {
         model.addAttribute("blog", new Blog());
-        model.addAttribute("categoryList", this.iCategoryService.findAll());
         return "/blog/create";
     }
 
@@ -85,7 +92,6 @@ public class BlogController {
     @GetMapping("/{id}/editForm")
     public String goEdit(@PathVariable Integer id, Model model) {
         model.addAttribute("blog", this.iBlogService.findById(id));
-        model.addAttribute("categoryList", this.iCategoryService.findAll());
         return "/blog/edit";
     }
 
@@ -111,7 +117,7 @@ public class BlogController {
     @GetMapping("/{id}/detailForm")
     public String goDetail(@PathVariable Integer id, Model model) {
         model.addAttribute("blog", iBlogService.findById(id));
-        return "/blog/det22ail";
+        return "/blog/detail";
     }
 
 }

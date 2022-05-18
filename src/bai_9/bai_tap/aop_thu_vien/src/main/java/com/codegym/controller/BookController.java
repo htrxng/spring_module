@@ -1,5 +1,6 @@
 package com.codegym.controller;
 
+import com.codegym.exception.RunoutQuantity;
 import com.codegym.model.Book;
 import com.codegym.model.BookLendVoucher;
 import com.codegym.service.IBookLendVoucherService;
@@ -7,10 +8,7 @@ import com.codegym.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -45,7 +43,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}/lendBook")
-    public String doLendForm(@PathVariable String id, RedirectAttributes redirectAttributes) {
+    public String doLendForm(@PathVariable String id, RedirectAttributes redirectAttributes) throws RunoutQuantity {
         String message = null;
         Integer bookId = Integer.parseInt(id);
         Boolean check = iBookService.lendBookById(bookId);
@@ -86,4 +84,12 @@ public class BookController {
         System.out.println(message);
         return "redirect:/home";
     }
+    @ExceptionHandler(RunoutQuantity.class)
+    public String showError() { return "error";}
+
+    @ExceptionHandler(NumberFormatException.class)
+    public String showErrorPage() { return "error";}
+
+
+
 }
