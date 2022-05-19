@@ -26,19 +26,20 @@ public class CategoryRestController {
     @GetMapping("/listCategory")
     public ResponseEntity<List<Category>> getPageCategory() {
         List<Category> categoryList = this.iCategoryService.findAll();
-        if(categoryList.isEmpty()) {
+        if (categoryList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(categoryList,HttpStatus.OK);
+            return new ResponseEntity<>(categoryList, HttpStatus.OK);
         }
     }
+
     @GetMapping("/list-category/{id}")
-    public ResponseEntity<List<Blog>> getBlogInCategory(@PathVariable Integer id){
+    public ResponseEntity<List<Blog>> getBlogInCategory(@PathVariable Integer id) {
         List<Blog> blogPage = this.iBlogService.findAllBLogByCategory_CategoryId(id);
-        if (blogPage.size()==0){
+        if (blogPage.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(blogPage,HttpStatus.OK);
+        return new ResponseEntity<>(blogPage, HttpStatus.OK);
     }
 
 }

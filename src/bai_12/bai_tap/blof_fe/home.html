@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+            rel="stylesheet"
+    />
+</head>
+<body>
+<div class="row mx-3" id="bodyBlog">
+</div>
+<script src="jquery/jquery-3.6.0.min.js"></script>
+
+<div>
+    <nav aria-label="..." class="d-flex justify-content-center">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" id="aPrevious">Previous</a>
+            </li>
+            <li class="page-item disabled" >
+                <a class="page-link" id="pageNumber"></a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" id="aNext">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<script>
+    let curPage = 0;
+
+    function getPageBlog(pageNumber) {
+        $.ajax({
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/blogRest/pageBlog?page=" + pageNumber,
+            success: function (blogPage) {
+                console.log(blogPage.content);
+                let outHTML = "";
+
+                let count = 1;
+                for (let blogDto of blogPage.content) {
+                    outHTML += `<div class="card-group col-3">
+<div class="card m-4">
+<img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp"
+                           class="card-img-top"
+                           alt="Hollywood Sign on The Hill"/>
+    <div class="card-body">
+    <h4 class="card-title text-truncate">Title :
+    <span class="text-secondary">${blogDto.titleBlog}</span>
+    </h4>
+        <p class="card-text text-warning"> Summary : <span style="color: teal">${blogDto.summary}</span></p>
+        <p class="card-text text-warning"> Category:
+        <small class="text-success">${blogDto.category.categoryName}</small></p>
+        <p class="card-text text-warning"> Author:
+        <small class="text-success">${blogDto.author}</small></p>
+        <div class="card-footer px-0"><a class="btn btn-success mx-4"
+                                         href="#">View Content</a>
+        </div>
+    </div>
+</div>
+  </div>`;
+                    ;
+                }
+                $("#pageNumber").text(curPage+1 + " / " + blogPage.totalPages);
+
+                $("#bodyBlog").html(outHTML);
+            },
+            error: function (resultError) {
+                console.log(resultError);
+            }
+        });
+    }
+
+    getPageBlog(curPage);
+    $("#aNext").click(function () {
+        curPage++;
+        getPageBlog(curPage);
+    });
+    $("#aPrevious").click(function () {
+        curPage--;
+        getPageBlog(curPage);
+    });
+</script>
+
+</body>
+<!-- MDB -->
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+></script>
+</html>
