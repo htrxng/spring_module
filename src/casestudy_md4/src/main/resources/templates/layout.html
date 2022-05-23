@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:fragment="linkbootstrapCss">
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+            rel="stylesheet"
+    />
+    </th:block>
+</head>
+<body>
+<header th:fragment="header">
+    <!-- Background image -->
+    <div
+            class="p-5 text-center bg-image"
+            style="
+      background-image: url('https://hotelfuramadanang.files.wordpress.com/2016/03/furama-resort-da-nang-2.jpg?w=800&h=304');
+      height: 400px;
+    "
+    >
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="col-6 col-md-4"><img
+                        src="https://cdn.nhanlucnganhluat.vn/uploads/images/051D288B/logo/2018-12/Logo-FURAMA-RESORT.jpg"
+                        width="25%" alt=""></div>
+                <div class="text-white">
+                    <h1 class="mb-3">KHU NGHỈ DƯỠNG FURAMA ĐÀ NẴNG</h1>
+                    <h4 class="mb-3">Huu Trung</h4>
+                    <!--                    <a class="btn btn-outline-light btn-lg" href="#!" role="button"-->
+                    <!--                    >Call to action</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Background image -->
+    <!--     Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home.html">Home</a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Employee</a>
+                    <a class="nav-link" href="/customer/list">Customer</a>
+                    <a class="nav-link" href="#">Service</a>
+                    <a class="nav-link" href="#">Contract</a>
+                </div>
+            </div>
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <form class="d-flex input-group w-auto">
+                        <input
+                                type="search"
+                                class="form-control rounded"
+                                placeholder="Search"
+                                aria-label="Search"
+                                aria-describedby="search-addon"
+                        />
+                        <span class="input-group-text text-white border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+      </span>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </nav>
+    <!-- Navbar -->
+</header>
+<div class="row">
+    <div class="col-6 col-md-3" id="side-bar">
+        <ul class="list-group">
+            <li class="list-group-item">item one</li>
+            <li class="list-group-item list-group-item-primary">item two</li>
+            <li class="list-group-item list-group-item-secondary">item three</li>
+            <li class="list-group-item list-group-item-success">item four</li>
+        </ul>
+    </div>
+    <div class="col-6 col-md-9" id="content">
+        <h5>Mở theo lời giai điệu</h5>
+        <p id="mo-theo-loi-giai-dieu">Bao la là tiếng nói của độ lượng. Đời không thấy tha thứ cho nhau mà vẫn mơ
+            ước
+            bao la. Ai cũng thích những cánh đồng mênh mông,
+            những chân trời rộng mở. Sao mà lắt léo thế? Con người luôn luôn sẵn sàng tham dự những chuyến đi bồng
+            bềnh,
+            sảng khói với
+            những chân trời không thấy. Thèm gió bể khơi. Thèm núi đồi trùng điệp. Hân hoan reo ca cùng chim chóc.
+            Nâng
+            niu những hoa đồng cỏ nội.
+            Ai cũng thế. Không riêng ai. Đến với đất trời như những đứa con của vũ trụ, mà tấm lòng thì đóng kín tối
+            tăm.
+            Sao mà biển lận với trời đất quá vậy? <br> <br> Đời đã mở cho ta những cõi rộng. Mà lòng nhân gian thì
+            quá
+            hẹp hòi.
+            Có cái gì bất trắc mà nẩy sinh như thế. Đã vậy thì không nên sàm sỡ thốt tiếng bao la, mở lời rộng rãi.
+            Đánh lừa thiên hạ còn khả thứ. Đừng bất kính với đất trời. Chưa bao giờ đóa sen, đóa hồng nở một cách
+            gian
+            dối.
+            Lòng không nở được một điều gì tốt đẹp thì thôi. Đừng ép gượng. <br> <br> Con người ta cũng hay đấy chứ.
+            Dễ quên có phải là cái vốn liếng ở đời? Sống với người thì hẹp. Hẹp quá! Mai đây ra đứng trước cõi bao
+            la
+            thì nói chuyện phiêu bồng.
+            Vả chăng, trời đất cũng dễ tính. Làm gì có chuyện trời đất ganh đua với người. Có chăng, chỉ là ganh với
+            hồng nhan, với tài mệnh. <br> <br>
+            Thế ra, ông Trời cũng khéo lắm. Cũng bày ra những cuộc chơi riêng. Chơi với kẻ tương xứng. Hiểu ra như
+            thế
+            thì những định mệnh nổi trôi mới khỏi buồn. <br> <br>
+            Thời nào cũng có những hồng nhan đa truân. Bất cứ ở đâu. Kiều năm xưa hay Kiều nay thì cũng vậy. Gặp
+            được
+            người đồng điệu thì nói ngay tiếng nặng tình.
+            Tinh lắm. Đã gặp được thì không bao giờ gieo lời mắc mỏ. Làm vậy, không những xấu mặc, mà xấu lòng.<br>
+            <br>
+            Hình như có sự xếp đặt của ai đây.
+            Bàn tay ghép gán quả là tài tình lắm. Tài tình và tài tử. Tài tử trong cái nghĩ ẩn báu lộng ngọc của
+            cuộc
+            đời.
+            Bởi khi ta chạm đến tấm lòng quí giá kia của Kiều thì lập tức ta gặp cái bao la của trời đất.
+            Hay lắm! Quỷ quyệt đến thế thì hết sức. <br> <br>Và – cái bao la kia là gì vậy? Là gì mà ai nấy đều nặng
+            lòng với?
+            Có kẻ đứng trước bao la mà không thấy được bao la. Có kẻ ở buổi bình minh, nghe tiếng chim hót đã chạm
+            mặt
+            với cõi vô lượng.
+            Biết được vô lượng là cùng lúc đến với vô biên. Hay đôi khi gắn bó, hòa lẫn với nhau trong một cuộc hôn
+            phối
+            son sắt.
+            Qua tay kẻ phàm nhân, cái vô biên được ví von đối chiếu nghịch lý với cuộc đời hữu hạn của con người.
+            Nhưng nếu rảnh rỗi một chút hãy ra nhìn sông nước thử. Cái vô biên nằm đâu đó trên cánh vạc chở hoàng
+            hôn về
+            núi mỗi chiều. <br><br>
+            Chạm đến vô biên là nhắc nhở cái lý sinh tử ở đời. Là muốn tầm tích con đường vô định của sự sống chết.
+            Thường khi nó gây nên sự buồn bã không nguôi trong kiếp nhân sinh. Trái lại, đi vào cõi bao la người ta
+            nhận
+            ra được nỗi hân hoan trong lòng.
+            Khi bắt được cái nhịp của trời đất, lòng ta bỗng reo ca, nhảy múa trong một hòa âm thuận chiều. Một cái
+            gì
+            đó soi tỏ đời ta như đạo đạt.
+            Đó là cái bước nhảy hân hoan, nối liền trời với đất, của Zorba trên bờ biển. Cái hạnh phúc đó không đến
+            với
+            mọi người.
+            Cái sự hòa nhịp kia cũng không thể có nếu lòng ta không được trang bị vẻ thênh thang của vũ trụ.
+            Có thực sự chạm đến cõi vĩnh phúc vô hình, mới hý lộng, mới nhảy múa say sưa đến thế được. <br><br>
+            Cho nên, nói đến chuyện riêng chung của trời đất là nói trong cái lý đó vậy. Cũng không dễ gì tập tành
+            sự độ
+            lượng.
+            Muốn có được phải làm cả một cuộc đổi đời. Thay cái nhìn. Thay trí óc. Và tuyệt đối phải có một con tim
+            đẹp
+            đẽ. <br><br>
+            Nếu không, cái tình với cõi bao la kia chỉ là cái tình gian lận. Và còn thú vị gì một cuộc chơi thiếu
+            hào
+            hứng như thế.
+            Trời đất nương ta, nhưng ta vốn như con bệnh, thủy chung không phát giác được gì.
+            Con mắt rêu phong đã đóng kín ta lại với thế giới ích kỷ, hẹp hòi, riêng tư. Làm sao còn nghe ra tiếng
+            hoan
+            ca của thế giới bên ngoài.
+            Nếu bảo là nghe, thì sao lại có thể thiếu hòa điệu đến thế được. Chân tay trì trệ. Đời sống như đóng
+            đinh,
+            xa cách. Đừng mưu toan với trời đất.
+            Hạnh phúc xa lạ kia chỉ dành cho người có lòng. Kẻ hời hợt dễ đàm tiếu, thị phi về cái hạnh phúc đó lắm.
+            Bởi
+            nhìn gần, hạnh phúc đó có vẻ phù du quá.
+            Không mang lại áo cơm. Đến thế thì còn nói thêm được một lời nào nữa. Hãy ôm lấy cái phần của mình. Kẻ
+            nổi
+            trôi gặp người trôi nổi.
+            Cứ theo trời xa đất rộng kia mà rong chơi vui thú một đời vậy. <br> <br> <br> Tháng 9 1973 <br> Trịnh
+            Công
+            Sơn<br>...</p>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-facebook-f"></i
+            ></a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-twitter"></i
+            ></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-google"></i
+            ></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-instagram"></i
+            ></a>
+
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-linkedin-in"></i
+            ></a>
+
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-github"></i
+            ></a>
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Form -->
+        <section class="">
+            <form action="">
+                <!--Grid row-->
+                <div class="row d-flex justify-content-center">
+                    <!--Grid column-->
+                    <div class="col-auto">
+                        <p class="pt-2">
+                            <strong>Sign up for our newsletter</strong>
+                        </p>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-5 col-12">
+                        <!-- Email input -->
+                        <div class="form-outline form-white mb-4">
+                            <input type="email" id="form5Example21" class="form-control"/>
+                            <label class="form-label" for="form5Example21">Email address</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-auto">
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-outline-light mb-4">
+                            Subscribe
+                        </button>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </form>
+        </section>
+        <!-- Section: Form -->
+
+        <!-- Section: Text -->
+        <section class="mb-4">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+                repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+                eum harum corrupti dicta, aliquam sequi voluptate quas.
+            </p>
+        </section>
+        <!-- Section: Text -->
+
+        <!-- Section: Links -->
+        <section class="">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-white">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-white">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-white">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-white">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </section>
+        <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+</body>
+<th:block th:fragment="linkbootstrapJS">
+<!-- MDB -->
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+></script>
+</th:block>
+</html>

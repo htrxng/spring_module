@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+        <th>Stt</th>
+        <th>Name</th>
+        <th>Type Customer</th>
+        <th>BirthDate</th>
+        <th>Gender</th>
+        <th>Id Card</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th colspan="3">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer, stt : ${customers}">
+        <th scope="row" th:text="${stt.count}"></th>
+        <td>
+            <p class="fw-normal mb-1" th:text="${customer.customerName}"></p>
+        </td>
+        <td th:text="${customer.customerType.customerTypeName}"></td>
+        <td th:text="${customer.customerDateOfBirth}">
+        </td>
+        <td th:text="${customer.customerGender}"></td>
+        <td th:text="${customer.customerIdCard}"></td>
+        <td th:text="${customer.customerPhone}"></td>
+        <td th:text="${customer.customerEmail}"></td>
+        <td th:text="${customer.customerAddress}"></td>
+        <td>
+            <a class="btn btn-success" th:href="@{/{id}/detailForm(id=${customer.customerId})}">Detail</a>
+        </td>
+        <td>
+            <a class="btn btn-warning" th:href="@{/{id}/editForm(id=${customer.customerId})}">Update</a>
+        </td>
+        <td>
+            <a class="btn btn-danger" th:href="@{/{id}/deleteForm(id=${customer.customerId})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="row">
+    <div class="row-lg-12">
+        <a th:if="${customers.hasPrevious()}"
+           th:href="@{/customer/list(page=${customers.number - 1 }, keyword=${keywordVal})}">
+            Previous
+        </a>
+        <span th:text="${customers.number + 1 }"></span>/
+        <span th:text="${customers.totalPages}"></span>
+        <a th:if="${customers.hasNext()}"
+           th:href="@{/customer/list(page=${customers.number + 1 }, keyword=${keywordVal})}">
+            Next
+        </a>
+    </div>
+</div>
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+
+</html>
