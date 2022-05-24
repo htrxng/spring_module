@@ -79,7 +79,7 @@ create table customer
     primary key (customer_id),
     foreign key (customer_type_id) references customer_type (customer_type_id)
 );
-create table service
+create table facility
 (
     service_id       int auto_increment,
     service_name      varchar(45) not null,
@@ -109,7 +109,7 @@ create table contract
     primary key (contract_id),
     foreign key (employee_id) references employee (employee_id),
     foreign key (customer_id) references customer (customer_id) on delete set null,
-    foreign key (service_id) references service (service_id) on delete set null
+    foreign key (service_id) references facility (service_id) on delete set null
 );
 create table contract_detail
 (
@@ -207,7 +207,7 @@ values ('Nguyễn Thị Hào', '1970-11-07', b'0', '643431213', '0945423362', 't
         '24 Lý Thường Kiệt, Quảng Ngãi', 1),
        ('Nguyễn Tâm Đắc', '1989-07-01', b'1', '344343432', '0987654321', 'tdactam@gmail.com', '22 Ngô Quyền, Đà Nẵng',
         2);
-insert into service
+insert into facility
 (service_name, service_area, service_cost, service_max_people, standard_room, description_other_convenience, pool_area, number_of_floors,
  rent_type_id, facility_type_id)
 values ('Villa Beach Front', 25000, 10000000, 10, 'vip', 'Có hồ bơi', 500, 4, 3, 1),

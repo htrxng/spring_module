@@ -15,4 +15,10 @@ public class CustomerTypeService implements ICustomerTypeService {
     public List<CustomerType> findAll() {
         return this.iCustomerTypeRepository.findAll();
     }
+
+    @Override
+    public CustomerType findById(Integer id) {
+        return iCustomerTypeRepository.findById(id).orElse(null);
+    }
+
 }

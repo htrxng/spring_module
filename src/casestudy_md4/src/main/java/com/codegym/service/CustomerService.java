@@ -1,6 +1,7 @@
 package com.codegym.service;
 
 import com.codegym.model.Customer;
+import com.codegym.model.CustomerType;
 import com.codegym.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,12 +14,27 @@ public class CustomerService implements ICustomerService {
     private ICustomerRepository iCustomerRepository;
 
     @Override
-    public Page<Customer> findAll(Pageable pageable) {
-        return this.iCustomerRepository.findAll(pageable);
+    public void save(Customer customer) {
+        this.iCustomerRepository.save(customer);
     }
 
     @Override
-    public Page<Customer> findAllByPage(String keywordVal, Pageable pageable) {
-        return iCustomerRepository.findAllByCustomerNameContaining(keywordVal,pageable);
+    public Customer findById(int id) {
+        return iCustomerRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        this.iCustomerRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Customer> findAll(String keyWordNameVal, String keyWordPhoneVal, Integer customerTypeIdVal, Pageable pageable) {
+        if(customerTypeIdVal == -1) {
+            return this.iCustomerRepository.findAllByCustomerNameContainingAndCustomerPhoneContaining(keyWordNameVal,keyWordPhoneVal,pageable);
+        } else {
+            return this.iCustomerRepository.findAllByCustomerNameContainingAndCustomerPhoneContainingAndCustomerType_CustomerTypeId(keyWordNameVal,keyWordPhoneVal,customerTypeIdVal,pageable);
+        }
+    }
+
 }

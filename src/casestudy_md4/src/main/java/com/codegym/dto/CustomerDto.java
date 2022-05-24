@@ -1,12 +1,8 @@
-package com.codegym.model;
+package com.codegym.dto;
 
+import com.codegym.model.CustomerType;
 
-import javax.persistence.*;
-
-@Entity
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CustomerDto {
     private Integer customerId;
     private String customerName;
     private String customerDateOfBirth;
@@ -15,15 +11,12 @@ public class Customer {
     private String customerPhone;
     private String customerEmail;
     private String customerAddress;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
     private CustomerType customerType;
 
-    public Customer() {
+    public CustomerDto() {
     }
 
-    public Customer(Integer customerId, String customerName, String customerDateOfBirth, Integer customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType) {
+    public CustomerDto(int customerId, String customerName, String customerDateOfBirth, Integer customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerDateOfBirth = customerDateOfBirth;

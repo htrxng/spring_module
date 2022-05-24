@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<form action="#" th:action="@{/customer/addCustomerToSystem}" th:object="${customer}" METHOD="post">
+    <fieldset class="w-75 mx-auto">
+        <legend class="text-center my-4"><span class="text-secondary">ADD CUSTOMER</span></legend>
+        <div>
+            <input type="hidden" th:field="*{customerId}" disabled>
+        </div>
+
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="title" type="text" th:field="*{customerName}"/>
+            <label class="form-label" for="title">Customer Name</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="customerDateOfBirth" type="date" th:field="*{customerDateOfBirth}"/>
+            <label class="form-label" for="customerDateOfBirth">customerDateOfBirth</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="customerIdCard" type="text" th:field="*{customerIdCard}"/>
+            <label class="form-label" for="customerIdCard">customerIdCard</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="customerPhone" type="text" th:field="*{customerPhone}"/>
+            <label class="form-label" for="customerPhone">customerPhone</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="customerEmail" type="text" th:field="*{customerEmail}"/>
+            <label class="form-label" for="customerEmail">customerEmail</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="customerAddress" type="text" th:field="*{customerAddress}"/>
+            <label class="form-label" for="customerAddress">customerAddress</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{customerGender}" class="form-select" aria-label="Disabled select example">
+                <option value="-1" th:text="---Gender---"></option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{customerType}" class="form-select" aria-label="Disabled select example">
+                <option value="0" th:text="---CustomerType---"></option>
+                <option th:each="customerType : ${customerTypeList}" th:value="${customerType.customerTypeId}"
+                        th:text="${customerType.customerTypeName}"></option>
+            </select>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">ADD</button>
+        <button type="button" class="btn btn-warning mt-4 mx-2"><a href="/customer/list">CANCEL</a></button>
+    </div>
+</form>
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+
+</html>

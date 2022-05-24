@@ -1,11 +1,10 @@
 package com.codegym.model;
 
-import lombok.Data;
+
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @Entity
 public class CustomerType {
     @Id
@@ -16,5 +15,36 @@ public class CustomerType {
     @OneToMany(mappedBy = "customerType")
     private List<Customer> customerList;
 
+    public CustomerType() {
+    }
 
+    public CustomerType(int customerTypeId, String customerTypeName, List<Customer> customerList) {
+        this.customerTypeId = customerTypeId;
+        this.customerTypeName = customerTypeName;
+        this.customerList = customerList;
+    }
+
+    public int getCustomerTypeId() {
+        return customerTypeId;
+    }
+
+    public void setCustomerTypeId(int customerTypeId) {
+        this.customerTypeId = customerTypeId;
+    }
+
+    public String getCustomerTypeName() {
+        return customerTypeName;
+    }
+
+    public void setCustomerTypeName(String customerTypeName) {
+        this.customerTypeName = customerTypeName;
+    }
+
+    public List<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
+    }
 }
