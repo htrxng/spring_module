@@ -81,18 +81,18 @@ create table customer
 );
 create table facility
 (
-    service_id       int auto_increment,
-    service_name      varchar(45) not null,
-    service_area        int,
-    service_cost     double      not null,
-    service_max_people  int,
+    facility_id       int auto_increment,
+    facility_name      varchar(45) not null,
+    facility_area        int,
+    facility_cost     double      not null,
+    facility_max_people  int,
     rent_type_id     int         not null,
     facility_type_id  int         not null,
     standard_room varchar(45),
     description_other_convenience  varchar(45),
     pool_area double,
     number_of_floors          int,
-    primary key (service_id),
+    primary key (facility_id),
     foreign key (rent_type_id) references rent_type (rent_type_id),
     foreign key (facility_type_id) references facility_type (facility_type_id)
 );
@@ -105,11 +105,11 @@ create table contract
     contract_total_money      double not null default 0,
     employee_id      int      not null,
     customer_id     int      ,
-    service_id        int      ,
+    facility_id        int      ,
     primary key (contract_id),
     foreign key (employee_id) references employee (employee_id),
     foreign key (customer_id) references customer (customer_id) on delete set null,
-    foreign key (service_id) references facility (service_id) on delete set null
+    foreign key (facility_id) references facility (facility_id) on delete set null
 );
 create table contract_detail
 (
@@ -208,7 +208,7 @@ values ('Nguyễn Thị Hào', '1970-11-07', b'0', '643431213', '0945423362', 't
        ('Nguyễn Tâm Đắc', '1989-07-01', b'1', '344343432', '0987654321', 'tdactam@gmail.com', '22 Ngô Quyền, Đà Nẵng',
         2);
 insert into facility
-(service_name, service_area, service_cost, service_max_people, standard_room, description_other_convenience, pool_area, number_of_floors,
+(facility_name, facility_area, facility_cost,facility_max_people, standard_room, description_other_convenience, pool_area, number_of_floors,
  rent_type_id, facility_type_id)
 values ('Villa Beach Front', 25000, 10000000, 10, 'vip', 'Có hồ bơi', 500, 4, 3, 1),
        ('House Princess 01', 14000, 5000000, 7, 'vip', 'Có thêm bếp nướng', null, 3, 2, 2),
@@ -217,7 +217,7 @@ values ('Villa Beach Front', 25000, 10000000, 10, 'vip', 'Có hồ bơi', 500, 4
        ('House Princess 02', 10000, 4000000, 5, 'normal', 'Có thêm bếp nướng', null, 2, 3, 2),
        ('Room Twin 02', 3000, 900000, 2, 'normal', 'Có tivi', null, null, 4, 3);
 insert into contract
-(contract_start_date, contract_end_date, contract_deposit,employee_id, customer_id, service_id)
+(contract_start_date, contract_end_date, contract_deposit,employee_id, customer_id, facility_id)
 values ('2020-12-08', '2020-12-08', 0, 3, 1, 3),
        ('2020-07-14', '2020-07-21', 200000, 7, 3, 1),
        ('2021-03-15', '2021-03-17', 50000, 3, 4, 2),

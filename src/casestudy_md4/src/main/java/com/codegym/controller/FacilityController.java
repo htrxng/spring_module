@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/facility")
-public class ServiceController {
+public class FacilityController {
     @Autowired
     private IFacilityTypeService iFacilityTypeService;
     @Autowired
@@ -48,6 +48,6 @@ public class ServiceController {
         Facility facility =   new Facility();
         BeanUtils.copyProperties(facilityDto, facility);
         iFacilityService.save(facility);
-        return "home";
+        return "redirect:/facility/addNewFacility";
     }
 }

@@ -38,13 +38,17 @@
             <input class="form-control" id="descriptionOtherConvenience" type="text" th:field="*{descriptionOtherConvenience}"/>
             <label class="form-label" for="descriptionOtherConvenience">descriptionOtherConvenience</label>
         </div>
-        <div class="form-outline w-25 mx-auto my-4">
+        <div class="form-outline w-25 mx-auto my-4" id="input-pool">
+            <input class="form-control" id="pool" type="text" th:field="*{poolArea}"/>
+            <label class="form-label" for="pool">Pool Area</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4" id="input-floors">
             <input class="form-control" id="numberOfFloors" type="text" th:field="*{numberOfFloors}"/>
             <label class="form-label" for="numberOfFloors">numberOfFloors</label>
         </div>
 
         <div class="form-outline w-25 mx-auto my-4">
-            <select th:field="*{facilityType}" class="form-select" aria-label="Disabled select example">
+            <select th:field="*{facilityType}" class="form-select" aria-label="Disabled select example" id="select-facility">
                 <option value="0" th:text="---facilityType---"></option>
                 <option th:each="facilityType : ${facilityList}" th:value="${facilityType.facilityTypeId}"
                         th:text="${facilityType.facilityTypeName}"></option>
@@ -63,6 +67,32 @@
         <button type="button" class="btn btn-warning mt-4 mx-2"><a href="/customer/list">CANCEL</a></button>
     </div>
 </form>
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $("#select-facility").change(function () {
+            if (this.value == 3) {
+                $("#input-pool").hide();
+                $("#input-pool").find("input").prop("disabled",true);
+                $("#input-floors").hide();
+                $("#input-floors").find("input").prop("disabled",true);
+            } else if (this.value == 2) {
+                $("#input-pool").hide();
+                $("#input-pool").find("input").prop("disabled",true);
+                $("#input-floors").show();
+                $("#input-floors").find("input").prop("disabled",false);
+            } else if (this.value == 1) {
+                $("#input-pool").show();
+                $("#input-pool").find("input").prop("disabled",false);
+                $("#input-floors").show();
+                $("#input-floors").find("input").prop("disabled",false);
+            }
+        });
+    });
+</script>
 </body>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 
