@@ -1,12 +1,12 @@
 package com.codegym.controller;
 
 import com.codegym.dto.FacilityDto;
-import com.codegym.model.FacilityType;
-import com.codegym.model.RentType;
-import com.codegym.model.Facility;
-import com.codegym.service.IFacilityTypeService;
-import com.codegym.service.IRentTypeService;
-import com.codegym.service.IFacilityService;
+import com.codegym.model.facility.FacilityType;
+import com.codegym.model.facility.RentType;
+import com.codegym.model.facility.Facility;
+import com.codegym.service.facility.IFacilityTypeService;
+import com.codegym.service.facility.IRentTypeService;
+import com.codegym.service.facility.IFacilityService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -9,21 +9,31 @@
 <header th:replace="~{layout :: header}"></header>
 <div>
     <h1 style="text-align: center"> CUSTOMER LIST</h1>
+
     <a class="btn btn-white" th:href="@{/customer/addNewCustomer}">+ ADD CUSTOMER</a>
     <form th:action="@{/customer/list}" method="get">
-        <label>
-            <input type="text" name="keyWordName" placeholder="name..." style="size: 50px">
-        </label>
-        <label>
-            <input type="text" name="keyWordPhone" placeholder="phone..." style="size: 50px">
-        </label>
-        <select name="customerTypeId" class="form-select" aria-label="Disabled select example" style="size: 50px">
-            <option value="0" th:text="---CustomerType---"></option>
-            <option th:each="customerType : ${customerTypeList}" th:value="${customerType.customerTypeId}"
-                    th:text="${customerType.customerTypeName}"></option>
-        </select>
-        <button type="submit">Search</button>
+        <div class="row">
+            <div class="form-outline my-2 col-3 mx-3">
+                <label>
+                    <input type="text" name="keyWordName" placeholder="name..." >
+                </label>
+            </div>
+            <div class="form-outline my-2 col-3 mx-3">
+                <label>
+                    <input type="text" name="keyWordPhone" placeholder="phone..." >
+                </label>
+            </div>
+            <div class="form-outline my-2 col-3 mx-3">
+                <select name="customerTypeId" class="form-select" aria-label="Disabled select example">
+                    <option value="" th:text="---CustomerType---"></option>
+                    <option th:each="customerType : ${customerTypeList}" th:value="${customerType.customerTypeId}"
+                            th:text="${customerType.customerTypeName}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-dark col-2 my-2">Search</button>
+        </div>
     </form>
+
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
         <tr>

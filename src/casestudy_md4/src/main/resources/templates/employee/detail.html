@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>DETAIL EMPLOYEE</h2>
+<button><a href="/employee/list">Back To List</a></button>
+<div id="detail" th:object="${employee}">
+    <div>
+        <label >Name</label>
+        <label th:text="${employee.employeeName}"></label>
+    </div>
+    <div>
+        <label >employeeDateOfBirth</label>
+        <label th:text="${employee.employeeDateOfBirth}"></label>
+    </div>
+    <div>
+        <label >employeeIdCard</label>
+        <label th:text="${employee.employeeIdCard}"></label>
+    </div>
+    <div>
+        <label >employeeSalary</label>
+        <label th:text="${employee.employeeSalary}"></label>
+    </div>
+    <div>
+        <label >employeePhone</label>
+        <label th:text="${employee.employeePhone}"></label>
+    </div>
+    <div>
+        <label >employeeEmail</label>
+        <label th:text="${employee.employeeEmail}"></label>
+    </div>
+    <div>
+        <label >Position</label>
+        <label th:text="${employee.position.positionName}"></label>
+    </div>
+    <div>
+        <label >Education Degree </label>
+        <label th:text="${employee.educationDegree.educationDegreeName}"></label>
+    </div>
+    <div>
+        <label >division</label>
+        <label th:text="${employee.division.divisionName}"></label>
+    </div>
+</div>
+</body>
+</html>

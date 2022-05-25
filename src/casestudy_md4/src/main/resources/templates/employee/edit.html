@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{update}" th:object="${employee}" method="post">
+    <fieldset class="w-75 mx-auto">
+        <legend class="text-center my-4"><span class="text-secondary">EDIT EMPLOYEE</span></legend>
+        <div>
+            <input type="hidden" th:field="*{employeeId}">
+        </div>
+
+        <div class="form-outline w-25 mx-auto">
+            <input class="form-control" id="employeeName" type="text" th:field="*{employeeName}"/>
+            <label class="form-label" for="employeeName">Name </label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="employeeDateOfBirth" type="date" th:field="*{employeeDateOfBirth}"/>
+            <label class="form-label" for="employeeDateOfBirth">BirthDay</label>
+        </div>
+
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="employeeIdCard" type="text" th:field="*{employeeIdCard}"/>
+            <label class="form-label" for="employeeIdCard">IdCard</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="employeeSalary" type="text" th:field="*{employeeSalary}"/>
+            <label class="form-label" for="employeeSalary">Salary</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="employeePhone" type="text" th:field="*{employeePhone}"/>
+            <label class="form-label" for="employeePhone">Phone</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="employeeEmail" type="text" th:field="*{employeeEmail}"/>
+            <label class="form-label" for="employeeEmail">Email</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="employeeAddress" type="text" th:field="*{employeeAddress}"/>
+            <label class="form-label" for="employeeAddress">Address</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{position}" class="form-select" aria-label="Disabled select example">
+                <option value="0" th:text="---Position---"></option>
+                <option th:each="position : ${positionList}" th:value="${position.positionId}"
+                        th:text="${position.positionName}"></option>
+            </select>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{educationDegree}" class="form-select" aria-label="Disabled select example">
+                <option value="0" th:text="---EducationDegree---"></option>
+                <option th:each="educationDegree : ${educationDegreeList}" th:value="${educationDegree.educationDegreeId}"
+                        th:text="${educationDegree.educationDegreeName}"></option>
+            </select>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{division}" class="form-select" aria-label="Disabled select example">
+                <option value="0" th:text="---division---"></option>
+                <option th:each="division : ${divisionList}" th:value="${division.divisionId}"
+                        th:text="${division.divisionName}"></option>
+            </select>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">Save</button>
+        <button type="button" class="btn btn-warning mt-4 mx-2"><a href="/employee/list">Cancel</a></button>
+    </div>
+</form>
+</body>
+</html>

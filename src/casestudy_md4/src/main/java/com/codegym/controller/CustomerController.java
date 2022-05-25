@@ -1,10 +1,10 @@
 package com.codegym.controller;
 
 import com.codegym.dto.CustomerDto;
-import com.codegym.model.Customer;
-import com.codegym.model.CustomerType;
-import com.codegym.service.ICustomerService;
-import com.codegym.service.ICustomerTypeService;
+import com.codegym.model.customer.Customer;
+import com.codegym.model.customer.CustomerType;
+import com.codegym.service.customer.ICustomerService;
+import com.codegym.service.customer.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -39,10 +39,10 @@ public class CustomerController {
         String keyWordNameVal = keyWordName.orElse("");
         String keyWordPhoneVal = keyWordPhone.orElse("");
         Integer customerTypeIdVal = customerTypeId.orElse(-1);
-        model.addAttribute("customers", this.iCustomerService.findAll(keyWordNameVal,keyWordPhoneVal,customerTypeIdVal,pageable));
-        model.addAttribute("keyWordNameVal",keyWordNameVal);
-        model.addAttribute("keyWordPhoneVal",keyWordPhoneVal);
-        model.addAttribute("customerTypeIdVal",customerTypeIdVal);
+        model.addAttribute("customers", this.iCustomerService.findAll(keyWordNameVal, keyWordPhoneVal, customerTypeIdVal, pageable));
+        model.addAttribute("keyWordNameVal", keyWordNameVal);
+        model.addAttribute("keyWordPhoneVal", keyWordPhoneVal);
+        model.addAttribute("customerTypeIdVal", customerTypeIdVal);
         return "/customer/list";
     }
 

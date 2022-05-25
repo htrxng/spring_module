@@ -35,7 +35,7 @@ create table rent_type
 (
     rent_type_id  int auto_increment,
     rent_type_name varchar(45),
-    rent_tpye_cost double,
+    rent_type_cost double,
     primary key (rent_type_id)
 );
 create table attach_service

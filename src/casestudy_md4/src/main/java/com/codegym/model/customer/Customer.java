@@ -1,8 +1,15 @@
-package com.codegym.dto;
+package com.codegym.model.customer;
 
-import com.codegym.model.customer.CustomerType;
 
-public class CustomerDto {
+import com.codegym.model.contract.Contract;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerId;
     private String customerName;
     private String customerDateOfBirth;
@@ -11,12 +18,18 @@ public class CustomerDto {
     private String customerPhone;
     private String customerEmail;
     private String customerAddress;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
     private CustomerType customerType;
 
-    public CustomerDto() {
+    @OneToMany(mappedBy = "customer")
+    private List<Contract> contractList;
+
+    public Customer() {
     }
 
-    public CustomerDto(int customerId, String customerName, String customerDateOfBirth, Integer customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType) {
+    public Customer(Integer customerId, String customerName, String customerDateOfBirth, Integer customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType, List<Contract> contractList) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerDateOfBirth = customerDateOfBirth;
@@ -26,6 +39,15 @@ public class CustomerDto {
         this.customerEmail = customerEmail;
         this.customerAddress = customerAddress;
         this.customerType = customerType;
+        this.contractList = contractList;
+    }
+
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 
     public Integer getCustomerId() {

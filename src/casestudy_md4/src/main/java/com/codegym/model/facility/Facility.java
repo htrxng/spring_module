@@ -1,9 +1,14 @@
-package com.codegym.dto;
+package com.codegym.model.facility;
 
-import com.codegym.model.facility.FacilityType;
-import com.codegym.model.facility.RentType;
+import com.codegym.model.contract.Contract;
 
-public class FacilityDto {
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+public class Facility {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer facilityId;
     private String facilityName;
     private Integer facilityArea;
@@ -13,13 +18,22 @@ public class FacilityDto {
     private String descriptionOtherConvenience;
     private Double poolArea;
     private Integer numberOfFloors;
+
+    @ManyToOne
+    @JoinColumn(name = "facility_type_id",referencedColumnName = "facilityTypeId")
     private FacilityType facilityType;
+
+    @ManyToOne
+    @JoinColumn(name = "rent_type_id",referencedColumnName = "rentTypeId")
     private RentType rentType;
 
-    public FacilityDto() {
+    @OneToMany(mappedBy = "facility")
+    private List<Contract> contractList;
+
+    public Facility() {
     }
 
-    public FacilityDto(Integer facilityId, String facilityName, Integer facilityArea, Double facilityCost, Integer facilityMaxPeople, String standardRoom, String descriptionOtherConvenience, Double poolArea, Integer numberOfFloors, FacilityType facilityType, RentType rentType) {
+    public Facility(Integer facilityId, String facilityName, Integer facilityArea, Double facilityCost, Integer facilityMaxPeople, String standardRoom, String descriptionOtherConvenience, Double poolArea, Integer numberOfFloors, FacilityType facilityType, RentType rentType, List<Contract> contractList) {
         this.facilityId = facilityId;
         this.facilityName = facilityName;
         this.facilityArea = facilityArea;
@@ -31,6 +45,15 @@ public class FacilityDto {
         this.numberOfFloors = numberOfFloors;
         this.facilityType = facilityType;
         this.rentType = rentType;
+        this.contractList = contractList;
+    }
+
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 
     public Integer getFacilityId() {

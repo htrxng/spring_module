@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+
+<h1 style="text-align: center"> EMPLOYEE LIST</h1>
+
+<a class="btn btn-white" th:href="@{/employee/addNewEmployee}">+ ADD EMPLOYEE</a>
+<form th:action="@{/employee/list}" method="get">
+    <div class="row">
+        <div class="form-outline my-2 col-3 mx-3">
+            <label>
+                <input type="text" name="keyWordName" placeholder="name...">
+            </label>
+        </div>
+        <div class="form-outline my-2 col-3 mx-3">
+            <select name="positionId" class="form-select" aria-label="Disabled select example">
+                <option value="%" th:text="---Position---"></option>
+                <option th:each="position : ${positionList}" th:value="${position.positionId}"
+                        th:text="${position.positionName}"></option>
+            </select>
+        </div>
+        <div class="form-outline my-2 col-3 mx-3">
+            <select name="divisionId" class="form-select" aria-label="Disabled select example">
+                <option value="%" th:text="---Division---"></option>
+                <option th:each="divison : ${divisionList}" th:value="${divison.divisionId}"
+                        th:text="${divison.divisionName}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-dark col-2 my-2">Search</button>
+    </div>
+</form>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+        <th>Stt</th>
+        <th>Name</th>
+        <th>BirthDate</th>
+        <th>Id Card</th>
+        <th>Salary</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Position</th>
+        <th>Education Degree</th>
+        <th>Division</th>
+        <th colspan="3">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee, stt : ${employees}">
+        <th scope="row" th:text="${stt.count}"></th>
+        <td>
+            <p class="fw-normal mb-1" th:text="${employee.employeeName}"></p>
+        </td>
+        <td th:text="${employee.employeeDateOfBirth}">
+        </td>
+        <td th:text="${employee.employeeIdCard}"></td>
+        <td th:text="${employee.employeeSalary}"></td>
+<!--        <td><fmt:formatNumber>${employee.employeeSalary}</fmt:formatNumber></td>-->
+        <td th:text="${employee.employeePhone}"></td>
+        <td th:text="${employee.employeeEmail}"></td>
+        <td th:text="${employee.employeeAddress}"></td>
+        <td th:text="${employee.position.positionName}"></td>
+        <td th:text="${employee.educationDegree.educationDegreeName}"></td>
+        <td th:text="${employee.division.divisionName}"></td>
+        <td>
+            <a class="btn btn-success" th:href="@{/employee/detailForm(id=${employee.employeeId})}">Detail</a>
+        </td>
+        <td>
+            <a class="btn btn-warning" th:href="@{/employee/editForm(id=${employee.employeeId})}">Update</a>
+        </td>
+        <td>
+            <a class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal"
+               th:attr="onclick=|deleteModal('${employee.employeeId}', '${employee.employeeName}')|">
+                Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Employee</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" th:action="@{/employee/delete}">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="get-id">
+                    <h1 style="color: black" id="get-name">
+                        Name Employee:
+                    </h1>
+                    <hr>
+                    <p>Are You Sure ???</p>
+                    <p style="color: red">this action cant not revert</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete It !</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function deleteModal(id, name) {
+        document.getElementById("get-id").value = id;
+        document.getElementById("get-name").innerText = name;
+    }
+</script>
+<div class="row">
+    <div class="row-lg-12">
+        <a th:if="${employees.hasPrevious()}"
+           th:href="@{/employee/list(page=${employees.number - 1 },
+            keyWordName=${keyWordNameVal},
+            positionId = ${positionIdVal},
+            divisionId = ${divisionIdVal}
+           )}">
+            Previous
+        </a>
+        <span th:text="${employees.number + 1 }"></span>/
+        <span th:text="${employees.totalPages}"></span>
+        <a th:if="${employees.hasNext()}"
+           th:href="@{/employee/list(page=${employees.number + 1 },
+           keyWordName=${keyWordNameVal},
+            positionId = ${positionIdVal},
+            divisionId = ${divisionIdVal})}">
+            Next
+        </a>
+    </div>
+</div>
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+</html>
