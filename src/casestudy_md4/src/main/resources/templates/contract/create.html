@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<form th:action="@{/contract/addCustomerToSystem}" th:object="${contract}" METHOD="post">
+    <fieldset class="w-75 mx-auto">
+        <legend class="text-center my-4"><span class="text-secondary">ADD CONTRACT</span></legend>
+        <div>
+            <input type="hidden" th:field="*{contractId}" disabled>
+        </div>
+
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="contractStartDate" type="date" th:field="*{contractStartDate}"/>
+            <label class="form-label" for="contractStartDate">Start Date</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="contractEndDate" type="date" th:field="*{contractEndDate}"/>
+            <label class="form-label" for="contractEndDate">End Date</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="contractDeposit" type="number" th:field="*{contractDeposit}"/>
+            <label class="form-label" for="contractDeposit">Deposit</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="contractTotalMoney" type="number" th:field="*{contractTotalMoney}"/>
+            <label class="form-label" for="contractTotalMoney">Total Money</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{customer}" class="form-select" aria-label="Disabled select example">
+                <option value="0" th:text="---Customer---"></option>
+                <option th:each="customer : ${customerList}" th:value="${customer.customerId}"
+                        th:text="${customer.customerName}"></option>
+            </select>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{employee}" class="form-select" aria-label="Disabled select example">
+                <option value="0" th:text="---Employee---"></option>
+                <option th:each="employee : ${employeeList}" th:value="${employee.employeeId}"
+                        th:text="${employee.employeeName}"></option>
+            </select>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{facility}" class="form-select" aria-label="Disabled select example">
+                <option value="0" th:text="---Facility---"></option>
+                <option th:each="facility : ${facilityList}" th:value="${facility.facilityId}"
+                        th:text="${facility.facilityName}"></option>
+            </select>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">ADD</button>
+        <a href="/home"><button type="button" class="btn btn-warning mt-4 mx-2">Cancel</button></a>
+    </div>
+</form>
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+</html>

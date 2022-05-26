@@ -3,46 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
 </head>
 <body>
-<h2>Detail Customer</h2>
-<button><a href="/customer/list">Back To List</a></button>
-<div id="detail" th:object="${customer}">
-    <div>
-        <label>Name </label>
-        <label th:text="${customer.customerName}"></label>
-    </div>
-    <div>
-        <label>customerDateOfBirth </label>
-        <label th:text="${customer.customerDateOfBirth}"></label>
-    </div>
-    <div>
-        <label>Gender </label>
-        <label th:if="${customer.customerGender  == 1}"> Male
-        </label>
-        <label th:if="${customer.customerGender  == 0}"> Female
-        </label>
-    </div>
-    <div>
-        <label>Id Card </label>
-        <label th:text="${customer.customerIdCard}"></label>
-    </div>
-    <div>
-        <label>Phone </label>
-        <label th:text="${customer.customerPhone}"></label>
-    </div>
-    <div>
-        <label>Email </label>
-        <label th:text="${customer.customerEmail}"></label>
-    </div>
-    <div>
-        <label>Address </label>
-        <label th:text="${customer.customerAddress}"></label>
-    </div>
-    <div>
-        <label>Customer Type </label>
-        <label th:text="${customer.customerType.customerTypeName}"></label>
+<header th:replace="~{layout :: header}"></header>
+<h2 style="text-align: center; font-style: oblique; color: darkslategray">DETAIL CUSTOMER</h2>
+<div id="detailCustomer" th:object="${customer}">
+    <div class="card text-center border border-primary shadow-0 ">
+
+        <div class="card-body">
+           <div>
+            <h5 class="card-title" th:text="${customer.customerName}">
+            </h5>
+            <label th:if="${customer.customerGender  == 1}" style="text-align: center"><i class="fas fa-male"></i>
+            </label>
+            <label th:if="${customer.customerGender  == 0}" style="text-align: center"><i class="fas fa-female"></i>
+            </label>
+           </div>
+            <p class="card-text" th:text="${customer.customerDateOfBirth}">
+            </p>
+
+            <p class="card-text" th:text="${customer.customerIdCard}">
+            </p>
+            <p class="card-text" th:text="${customer.customerPhone}">
+            </p>
+            <p class="card-text" th:text="${customer.customerEmail}">
+            </p>
+            <p class="card-text" th:text="${customer.customerAddress}">
+            </p>
+
+            <p class="card-text" th:text="${customer.customerType.customerTypeName}">
+            </p>
+        </div>
+        <div class="card-footer">
+            <a href="/customer/list"><button type="button" class="btn btn-warning mt-4 mx-2">Back To List</button></a>
+        </div>
     </div>
 </div>
+<footer th:replace="~{layout :: footer}"></footer>
 </body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 </html>

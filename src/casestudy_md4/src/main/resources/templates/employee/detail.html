@@ -3,47 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
 </head>
 <body>
-<h2>DETAIL EMPLOYEE</h2>
-<button><a href="/employee/list">Back To List</a></button>
-<div id="detail" th:object="${employee}">
-    <div>
-        <label >Name</label>
-        <label th:text="${employee.employeeName}"></label>
-    </div>
-    <div>
-        <label >employeeDateOfBirth</label>
-        <label th:text="${employee.employeeDateOfBirth}"></label>
-    </div>
-    <div>
-        <label >employeeIdCard</label>
-        <label th:text="${employee.employeeIdCard}"></label>
-    </div>
-    <div>
-        <label >employeeSalary</label>
-        <label th:text="${employee.employeeSalary}"></label>
-    </div>
-    <div>
-        <label >employeePhone</label>
-        <label th:text="${employee.employeePhone}"></label>
-    </div>
-    <div>
-        <label >employeeEmail</label>
-        <label th:text="${employee.employeeEmail}"></label>
-    </div>
-    <div>
-        <label >Position</label>
-        <label th:text="${employee.position.positionName}"></label>
-    </div>
-    <div>
-        <label >Education Degree </label>
-        <label th:text="${employee.educationDegree.educationDegreeName}"></label>
-    </div>
-    <div>
-        <label >division</label>
-        <label th:text="${employee.division.divisionName}"></label>
+<header th:replace="~{layout :: header}"></header>
+<h2 style="text-align: center; font-style: oblique; color: darkslategray">DETAIL EMPLOYEE</h2>
+<div id="detailEmployee" th:object="${employee}">
+    <div class="card text-center border border-primary shadow-0 ">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <i class="fas fa-user" style="size: B5"></i>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${employee.employeeName}"></h5>
+            <p class="card-text" th:text="${employee.employeeDateOfBirth}">
+            </p>
+            <p class="card-text" th:text="${employee.employeeIdCard}">
+            </p>
+            <p class="card-text" th:text="${#numbers.formatDecimal(employee.employeeSalary, 0, 'COMMA', 0, 'POINT')}">
+            </p>
+            <p class="card-text" th:text="${employee.employeePhone}">
+            </p>
+            <p class="card-text" th:text="${employee.employeeAddress}">
+            </p>
+            <p class="card-text" th:text="${employee.position.positionName}">
+            </p>
+            <p class="card-text" th:text="${employee.educationDegree.educationDegreeName}">
+            </p>
+            <p class="card-text" th:text="${employee.division.divisionName}">
+            </p>
+        </div>
+        <div class="card-footer">
+            <a href="/employee/list"><button type="button" class="btn btn-info">Back To List</button></a>
+<!--            <button type="button" class="btn btn-info"><a href="/employee/list">Back To List</a></button>-->
+        </div>
     </div>
 </div>
+<footer th:replace="~{layout :: footer}"></footer>
 </body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 </html>

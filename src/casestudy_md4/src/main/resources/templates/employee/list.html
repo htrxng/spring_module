@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -9,15 +8,35 @@
 <body>
 <header th:replace="~{layout :: header}"></header>
 
-<h1 style="text-align: center"> EMPLOYEE LIST</h1>
+<h1 style="text-align: center;color: olivedrab; font-style: italic"> EMPLOYEE LIST</h1>
 
-<a class="btn btn-white" th:href="@{/employee/addNewEmployee}">+ ADD EMPLOYEE</a>
+<a class="btn btn-success" th:href="@{/employee/addNewEmployee}" style="color: white">+ ADD EMPLOYEE</a>
+<div class="row" style="text-align: center">
+    <div class="row-lg-12">
+        <a th:if="${employees.hasPrevious()}"
+           th:href="@{/employee/list(page=${employees.number - 1 },
+            keyWordName=${keyWordNameVal},
+            positionId = ${positionIdVal},
+            divisionId = ${divisionIdVal}
+           )}">
+            Previous
+        </a>
+        <span th:text="${employees.number + 1 }"></span>/
+        <span th:text="${employees.totalPages}"></span>
+        <a th:if="${employees.hasNext()}"
+           th:href="@{/employee/list(page=${employees.number + 1 },
+           keyWordName=${keyWordNameVal},
+            positionId = ${positionIdVal},
+            divisionId = ${divisionIdVal})}">
+            Next
+        </a>
+    </div>
+</div>
 <form th:action="@{/employee/list}" method="get">
     <div class="row">
         <div class="form-outline my-2 col-3 mx-3">
-            <label>
-                <input type="text" name="keyWordName" placeholder="name...">
-            </label>
+            <input type="text" id="name" class="form-control" name="keyWordName"/>
+            <label class="form-label" for="name">Name</label>
         </div>
         <div class="form-outline my-2 col-3 mx-3">
             <select name="positionId" class="form-select" aria-label="Disabled select example">
@@ -62,8 +81,7 @@
         <td th:text="${employee.employeeDateOfBirth}">
         </td>
         <td th:text="${employee.employeeIdCard}"></td>
-        <td th:text="${employee.employeeSalary}"></td>
-<!--        <td><fmt:formatNumber>${employee.employeeSalary}</fmt:formatNumber></td>-->
+        <td th:text="${#numbers.formatDecimal(employee.employeeSalary, 0, 'COMMA', 0, 'POINT')}"></td>
         <td th:text="${employee.employeePhone}"></td>
         <td th:text="${employee.employeeEmail}"></td>
         <td th:text="${employee.employeeAddress}"></td>
@@ -116,27 +134,8 @@
         document.getElementById("get-name").innerText = name;
     }
 </script>
-<div class="row">
-    <div class="row-lg-12">
-        <a th:if="${employees.hasPrevious()}"
-           th:href="@{/employee/list(page=${employees.number - 1 },
-            keyWordName=${keyWordNameVal},
-            positionId = ${positionIdVal},
-            divisionId = ${divisionIdVal}
-           )}">
-            Previous
-        </a>
-        <span th:text="${employees.number + 1 }"></span>/
-        <span th:text="${employees.totalPages}"></span>
-        <a th:if="${employees.hasNext()}"
-           th:href="@{/employee/list(page=${employees.number + 1 },
-           keyWordName=${keyWordNameVal},
-            positionId = ${positionIdVal},
-            divisionId = ${divisionIdVal})}">
-            Next
-        </a>
-    </div>
-</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
 </body>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 </html>

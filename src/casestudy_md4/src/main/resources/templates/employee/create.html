@@ -6,6 +6,7 @@
     <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
 </head>
 <body>
+<header th:replace="~{layout :: header}"></header>
 <form action="#" th:action="@{/employee/addEmployeeToSystem}" th:object="${employee}" METHOD="post">
     <fieldset class="w-75 mx-auto">
         <legend class="text-center my-4"><span class="text-secondary">ADD EMPLOYEE</span></legend>
@@ -15,31 +16,31 @@
 
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="employeeName" type="text" th:field="*{employeeName}"/>
-            <label class="form-label" for="employeeName">employeeName</label>
+            <label class="form-label" for="employeeName">Name</label>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="employeeDateOfBirth" type="date" th:field="*{employeeDateOfBirth}"/>
-            <label class="form-label" for="employeeDateOfBirth">employeeDateOfBirth</label>
+            <label class="form-label" for="employeeDateOfBirth">BirthDay</label>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="employeeIdCard" type="number" th:field="*{employeeIdCard}"/>
-            <label class="form-label" for="employeeIdCard">employeeIdCard</label>
+            <label class="form-label" for="employeeIdCard">Id Card</label>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="employeeSalary" type="number" th:field="*{employeeSalary}"/>
-            <label class="form-label" for="employeeSalary">employeeSalary</label>
+            <label class="form-label" for="employeeSalary">Salary</label>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="employeePhone" type="number" th:field="*{employeePhone}"/>
-            <label class="form-label" for="employeeSalary">employeePhone</label>
+            <label class="form-label" for="employeeSalary">Phone</label>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="employeeEmail" type="text" th:field="*{employeeEmail}"/>
-            <label class="form-label" for="employeeEmail">employeeEmail</label>
+            <label class="form-label" for="employeeEmail">Email</label>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="employeeAddress" type="text" th:field="*{employeeAddress}"/>
-            <label class="form-label" for="employeeAddress">employeeAddress</label>
+            <label class="form-label" for="employeeAddress">Address</label>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <select th:field="*{position}" class="form-select" aria-label="Disabled select example">
@@ -62,14 +63,13 @@
                         th:text="${division.divisionName}"></option>
             </select>
         </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-secondary mt-4 mx-2">ADD</button>
+            <a href="/employee/list"><button type="button" class="btn btn-warning mt-4 mx-2">Cancel</button></a>
+        </div>
     </fieldset>
-    <div class="text-center">
-        <button type="submit" class="btn btn-secondary mt-4 mx-2">ADD</button>
-        <button type="button" class="btn btn-warning mt-4 mx-2"><a href="/customer/list">CANCEL</a></button>
-    </div>
 </form>
-
+<footer th:replace="~{layout :: footer}"></footer>
 </body>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
-
 </html>

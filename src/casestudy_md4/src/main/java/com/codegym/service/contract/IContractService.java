@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IContractService {
     List<Contract> findAll();
+
+    void save(Contract contract);
 }

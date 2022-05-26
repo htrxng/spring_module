@@ -20,8 +20,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="139b1180-e33b-498a-8d03-489e00b4924c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/dto/ContractDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/contract/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../bai_1/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../bai_1/thuc_hanh/customer-management" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../bai_5/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../bai_5/thuc_hanh/customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/database_cs/task1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/database_cs/task1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/controller/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/controller/ContractController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/dto/CustomerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/dto/CustomerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/model/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/model/customer/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/service/contract/IContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/service/contract/IContractService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/service/contract/impl/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/service/contract/impl/ContractService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/service/customer/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/service/customer/ICustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/service/customer/impl/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/java/com/codegym/service/customer/impl/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/customer/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/customer/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/customer/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/customer/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/customer/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/customer/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/customer/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/customer/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/employee/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/employee/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/employee/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/employee/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/employee/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/employee/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/employee/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/employee/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/service/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../casestudy_md4/src/main/resources/templates/service/create.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +108,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652411799190</updated>
       <workItem from="1652411804852" duration="10189000" />
+      <workItem from="1653547671993" duration="24000" />
     </task>
     <servers />
   </component>
@@ -103,6 +125,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="190" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1652426353052">

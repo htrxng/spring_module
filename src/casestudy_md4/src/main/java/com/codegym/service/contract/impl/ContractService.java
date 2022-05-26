@@ -16,4 +16,9 @@ public class ContractService implements IContractService {
     public List<Contract> findAll() {
         return iContractRepository.findAll();
     }
+
+    @Override
+    public void save(Contract contract) {
+        this.iContractRepository.save(contract);
+    }
 }

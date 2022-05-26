@@ -8,20 +8,38 @@
 <body>
 <header th:replace="~{layout :: header}"></header>
 <div>
-    <h1 style="text-align: center"> CUSTOMER LIST</h1>
+    <h1 style="text-align: center;color: olivedrab; font-style: italic"> CUSTOMER LIST</h1>
 
-    <a class="btn btn-white" th:href="@{/customer/addNewCustomer}">+ ADD CUSTOMER</a>
+    <h4 style="color: red; text-align: center" th:text="${message}" id="message"></h4>
+
+    <a class="btn btn-success" th:href="@{/customer/addNewCustomer}" style="color: white">+ ADD CUSTOMER</a>
+    <div class="row" style="text-align: center">
+        <div class="row-lg-12">
+            <a th:if="${customers.hasPrevious()}"
+               th:href="@{/customer/list(page=${customers.number - 1 }, keyWordName=${keyWordNameVal},
+                                                                     keyWordPhone = ${keyWordPhoneVal},
+                                                                     customerTypeId = ${customerTypeIdVal})}">
+                Previous
+            </a>
+            <span th:text="${customers.number + 1 }"></span>/
+            <span th:text="${customers.totalPages}"></span>
+            <a th:if="${customers.hasNext()}"
+               th:href="@{/customer/list(page=${customers.number + 1 }, keyWordName=${keyWordNameVal},
+                                                                     keyWordPhone = ${keyWordPhoneVal},
+                                                                     customerTypeId = ${customerTypeIdVal})}">
+                Next
+            </a>
+        </div>
+    </div>
     <form th:action="@{/customer/list}" method="get">
         <div class="row">
             <div class="form-outline my-2 col-3 mx-3">
-                <label>
-                    <input type="text" name="keyWordName" placeholder="name..." >
-                </label>
+                <input type="text" id="name" class="form-control" name="keyWordName"/>
+                <label class="form-label" for="name">Name</label>
             </div>
             <div class="form-outline my-2 col-3 mx-3">
-                <label>
-                    <input type="text" name="keyWordPhone" placeholder="phone..." >
-                </label>
+                <input type="text" id="phone" class="form-control" name="keyWordPhone"/>
+                <label class="form-label" for="phone">Phone</label>
             </div>
             <div class="form-outline my-2 col-3 mx-3">
                 <select name="customerTypeId" class="form-select" aria-label="Disabled select example">
@@ -38,6 +56,7 @@
         <thead class="bg-light">
         <tr>
             <th>Stt</th>
+            <th>Customer Code</th>
             <th>Name</th>
             <th>Type Customer</th>
             <th>BirthDate</th>
@@ -53,15 +72,18 @@
         <tr th:each="customer, stt : ${customers}">
             <th scope="row" th:text="${stt.count}"></th>
             <td>
+                <p class="fw-normal mb-1" th:text="${customer.customerCode}"></p>
+            </td>
+            <td>
                 <p class="fw-normal mb-1" th:text="${customer.customerName}"></p>
             </td>
             <td th:text="${customer.customerType.customerTypeName}"></td>
             <td th:text="${customer.customerDateOfBirth}">
             </td>
             <td>
-                <label th:if="${customer.customerGender  == 1}"> Male
+                <label th:if="${customer.customerGender  == 1}"> <i class="fas fa-male"></i>
                 </label>
-                <label th:if="${customer.customerGender  == 0}"> Female
+                <label th:if="${customer.customerGender  == 0}"> <i class="fas fa-female"></i>
                 </label>
             </td>
 
@@ -116,25 +138,14 @@
         document.getElementById("get-name").innerText = name;
     }
 </script>
-<div class="row">
-    <div class="row-lg-12">
-        <a th:if="${customers.hasPrevious()}"
-           th:href="@{/customer/list(page=${customers.number - 1 }, keyWordName=${keyWordNameVal},
-                                                                     keyWordPhone = ${keyWordPhoneVal},
-                                                                     customerTypeId = ${customerTypeIdVal})}">
-            Previous
-        </a>
-        <span th:text="${customers.number + 1 }"></span>/
-        <span th:text="${customers.totalPages}"></span>
-        <a th:if="${customers.hasNext()}"
-           th:href="@{/customer/list(page=${customers.number + 1 }, keyWordName=${keyWordNameVal},
-                                                                     keyWordPhone = ${keyWordPhoneVal},
-                                                                     customerTypeId = ${customerTypeIdVal})}">
-            Next
-        </a>
-    </div>
-</div>
+
 </body>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
-
+<script>
+    const timeout = document.getElementById('message');
+    setTimeout(hideElement, 3000) //milliseconds until timeout//
+    function hideElement() {
+        timeout.style.display = 'none'
+    }
+</script>
 </html>

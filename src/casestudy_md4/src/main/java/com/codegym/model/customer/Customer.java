@@ -11,6 +11,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerId;
+    private String customerCode;
     private String customerName;
     private String customerDateOfBirth;
     private Integer customerGender;
@@ -29,8 +30,9 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Integer customerId, String customerName, String customerDateOfBirth, Integer customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType, List<Contract> contractList) {
+    public Customer(Integer customerId, String customerCode, String customerName, String customerDateOfBirth, Integer customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType, List<Contract> contractList) {
         this.customerId = customerId;
+        this.customerCode = customerCode;
         this.customerName = customerName;
         this.customerDateOfBirth = customerDateOfBirth;
         this.customerGender = customerGender;
@@ -40,6 +42,14 @@ public class Customer {
         this.customerAddress = customerAddress;
         this.customerType = customerType;
         this.contractList = contractList;
+    }
+
+    public String getCustomerCode() {
+        return customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
     }
 
     public List<Contract> getContractList() {

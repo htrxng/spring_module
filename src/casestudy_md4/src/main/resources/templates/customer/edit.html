@@ -3,40 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
 </head>
 <body>
-<form th:action="@{update}" th:object="${customer}" method="post">
+<header th:replace="~{layout :: header}"></header>
+<form th:action="@{update}" th:object="${customerDto}" method="post">
     <fieldset class="w-75 mx-auto">
         <legend class="text-center my-4"><span class="text-secondary">EDIT CUSTOMER</span></legend>
         <div>
             <input type="hidden" th:field="*{customerId}">
         </div>
-
         <div class="form-outline w-25 mx-auto">
-
+            <input class="form-control" id="customerCode" type="text" th:field="*{customerCode}"/>
+            <label class="form-label" for="customerCode">Customer Code </label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto">
             <input class="form-control" id="customerName" type="text" th:field="*{customerName}"/>
             <label class="form-label" for="customerName">Name </label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></p>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="customerDateOfBirth" type="date" th:field="*{customerDateOfBirth}"/>
             <label class="form-label" for="customerDateOfBirth">BirthDay</label>
         </div>
-
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('customerDateOfBirth')}" th:errors="*{customerDateOfBirth}"></p>
+        </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="customerIdCard" type="text" th:field="*{customerIdCard}"/>
-            <label class="form-label" for="customerIdCard">customerIdCard</label>
+            <label class="form-label" for="customerIdCard">IdCard</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('customerIdCard')}" th:errors="*{customerIdCard}"></p>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="customerPhone" type="text" th:field="*{customerPhone}"/>
-            <label class="form-label" for="customerPhone">customerPhone</label>
+            <label class="form-label" for="customerPhone">Phone</label>
         </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}"></p>
+        </div>
+
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="customerEmail" type="text" th:field="*{customerEmail}"/>
-            <label class="form-label" for="customerEmail">customerEmail</label>
+            <label class="form-label" for="customerEmail">Email</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"></p>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="customerAddress" type="text" th:field="*{customerAddress}"/>
-            <label class="form-label" for="customerAddress">customerAddress</label>
+            <label class="form-label" for="customerAddress">Address</label>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <select th:field="*{customerGender}" class="form-select" aria-label="Disabled select example">
@@ -45,18 +67,26 @@
                 <option value="0">Female</option>
             </select>
         </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('customerGender')}" th:errors="*{customerGender}"></p>
+        </div>
         <div class="form-outline w-25 mx-auto my-4">
             <select th:field="*{customerType}" class="form-select" aria-label="Disabled select example">
-                <option value="0" th:text="---CustomerType---"></option>
+                <option value="" th:text="---CustomerType---"></option>
                 <option th:each="customerType : ${customerTypeList}" th:value="${customerType.customerTypeId}"
                         th:text="${customerType.customerTypeName}"></option>
             </select>
         </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('customerType')}" th:errors="*{customerType}"></p>
+        </div>
     </fieldset>
     <div class="text-center">
         <button type="submit" class="btn btn-secondary mt-4 mx-2">Save</button>
-        <button type="button" class="btn btn-warning mt-4 mx-2"><a href="/customer/list">Cancel</a></button>
+        <a href="/customer/list"><button type="button" class="btn btn-warning mt-4 mx-2">Cancel</button></a>
     </div>
 </form>
+<footer th:replace="~{layout :: footer}"></footer>
 </body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 </html>

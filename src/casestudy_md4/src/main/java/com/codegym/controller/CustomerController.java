@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,22 +45,48 @@ public class CustomerController {
         model.addAttribute("keyWordNameVal", keyWordNameVal);
         model.addAttribute("keyWordPhoneVal", keyWordPhoneVal);
         model.addAttribute("customerTypeIdVal", customerTypeIdVal);
+        model.addAttribute("message","Hữu Trung xin chào toàn thể lớp C12 ^^");
         return "/customer/list";
     }
 
     @GetMapping(value = "/addNewCustomer")
     public String goAddCustomer(Model model) {
         CustomerDto customerDto = new CustomerDto();
-        model.addAttribute("customer", customerDto);
+        model.addAttribute("customerDto", customerDto);
         return "customer/create";
     }
 
     @PostMapping(value = "/addCustomerToSystem")
-    public String addCustomer(@ModelAttribute CustomerDto customerDto, RedirectAttributes redirectAttributes) {
-        Customer customer = new Customer();
-        BeanUtils.copyProperties(customerDto, customer);
-        iCustomerService.save(customer);
-        return "redirect:/customer/list";
+    public String addCustomer(@ModelAttribute @Validated CustomerDto customerDto,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirectAttributes) {
+        new CustomerDto().validate(customerDto,bindingResult);
+        if(bindingResult.hasFieldErrors()) {
+            return "customer/create";
+        } else {
+            Customer newCustomer = new Customer();
+            BeanUtils.copyProperties(customerDto, newCustomer);
+            iCustomerService.save(newCustomer);
+            redirectAttributes.addFlashAttribute("message","Customer " +
+                    newCustomer.getCustomerName() + " has just been successfully added!");
+            return "redirect:/customer/list";
+        }
+    }
+    @PostMapping("/update")
+    public String updateCustomer(@ModelAttribute @Validated CustomerDto customerDto,
+                                 BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes) {
+        new CustomerDto().validate(customerDto,bindingResult);
+        if(bindingResult.hasFieldErrors()) {
+            return "customer/edit";
+        } else {
+            Customer customer = new Customer();
+            BeanUtils.copyProperties(customerDto, customer);
+            iCustomerService.save(customer);
+            redirectAttributes.addFlashAttribute("message","Customer " +
+                    customer.getCustomerName() + " has just been successfully updated!");
+            return "redirect:/customer/list";
+        }
     }
 
     @GetMapping("/detailForm")
@@ -71,21 +99,15 @@ public class CustomerController {
     public String goEditForm(@RequestParam String id, Model model) {
         CustomerDto customerDto = new CustomerDto();
         BeanUtils.copyProperties(this.iCustomerService.findById(Integer.parseInt(id)), customerDto);
-        model.addAttribute("customer", customerDto);
+        model.addAttribute("customerDto", customerDto);
         return "/customer/edit";
     }
 
-    @PostMapping("/update")
-    public String updateCustomer(@ModelAttribute CustomerDto customerDto, RedirectAttributes redirectAttributes) {
-        Customer customer = new Customer();
-        BeanUtils.copyProperties(customerDto, customer);
-        iCustomerService.save(customer);
-        return "redirect:/customer/list";
-    }
 
     @PostMapping("/delete")
-    public String deleteCustomer(@RequestParam String id) {
+    public String deleteCustomer(@RequestParam String id,RedirectAttributes redirectAttributes) {
         this.iCustomerService.deleteById(Integer.parseInt(id));
+        redirectAttributes.addFlashAttribute("message","Delete successfully!");
         return "redirect:/customer/list";
     }
 
