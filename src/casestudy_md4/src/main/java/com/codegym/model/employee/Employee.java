@@ -13,6 +13,7 @@ public class Employee {
     private String employeeName;
     private String employeeDateOfBirth;
     private String employeeIdCard;
+    @Column(name = "employee_salary")
     private Double employeeSalary;
     private String employeePhone;
     private String employeeEmail;
@@ -33,7 +34,6 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private List<Contract> contractList;
 
-
     public Employee() {
     }
 
@@ -49,14 +49,6 @@ public class Employee {
         this.position = position;
         this.educationDegree = educationDegree;
         this.division = division;
-        this.contractList = contractList;
-    }
-
-    public List<Contract> getContractList() {
-        return contractList;
-    }
-
-    public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
     }
 
@@ -146,5 +138,13 @@ public class Employee {
 
     public void setDivision(Division division) {
         this.division = division;
+    }
+
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 }

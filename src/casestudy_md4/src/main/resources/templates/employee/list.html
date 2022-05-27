@@ -4,34 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+    <style th:replace="~{layout:: css-nhap-nhay}"></style>
+    <style th:replace="~{layout :: css-blink}"></style>
 </head>
 <body>
 <header th:replace="~{layout :: header}"></header>
 
-<h1 style="text-align: center;color: olivedrab; font-style: italic"> EMPLOYEE LIST</h1>
+<!--<h1 class="text-animation" style="text-align: center;color: olivedrab; font-style: italic"> EMPLOYEE LIST</h1>-->
+<div class="sign">
+    <span class="fast-flicker">EMP</span>LOY<span class="flicker">EE</span>
+</div>
 
 <a class="btn btn-success" th:href="@{/employee/addNewEmployee}" style="color: white">+ ADD EMPLOYEE</a>
-<div class="row" style="text-align: center">
-    <div class="row-lg-12">
-        <a th:if="${employees.hasPrevious()}"
-           th:href="@{/employee/list(page=${employees.number - 1 },
-            keyWordName=${keyWordNameVal},
-            positionId = ${positionIdVal},
-            divisionId = ${divisionIdVal}
-           )}">
-            Previous
-        </a>
-        <span th:text="${employees.number + 1 }"></span>/
-        <span th:text="${employees.totalPages}"></span>
-        <a th:if="${employees.hasNext()}"
-           th:href="@{/employee/list(page=${employees.number + 1 },
-           keyWordName=${keyWordNameVal},
-            positionId = ${positionIdVal},
-            divisionId = ${divisionIdVal})}">
-            Next
-        </a>
-    </div>
-</div>
 <form th:action="@{/employee/list}" method="get">
     <div class="row">
         <div class="form-outline my-2 col-3 mx-3">
@@ -103,6 +87,42 @@
     </tr>
     </tbody>
 </table>
+<div class="row" style="text-align: center">
+    <div class="row-lg-12">
+        <a th:if="${employees.hasPrevious()}"
+           th:href="@{/employee/list(page=0,
+            keyWordName=${keyWordNameVal},
+            positionId = ${positionIdVal},
+            divisionId = ${divisionIdVal}
+           )}">
+            <i class="fas fa-angle-double-left"></i>
+        </a>
+        <a th:if="${employees.hasPrevious()}"
+           th:href="@{/employee/list(page=${employees.number - 1 },
+            keyWordName=${keyWordNameVal},
+            positionId = ${positionIdVal},
+            divisionId = ${divisionIdVal}
+           )}">
+            <i class="fas fa-angle-left"></i>
+        </a>
+        <span th:text="${employees.number + 1 }"></span>/
+        <span th:text="${employees.totalPages}"></span>
+        <a th:if="${employees.hasNext()}"
+           th:href="@{/employee/list(page=${employees.number + 1 },
+           keyWordName=${keyWordNameVal},
+            positionId = ${positionIdVal},
+            divisionId = ${divisionIdVal})}">
+            <i class="fas fa-angle-right"></i>
+        </a>
+        <a th:if="${employees.hasNext()}"
+           th:href="@{/employee/list(page=${employees.totalPages -1 },
+           keyWordName=${keyWordNameVal},
+            positionId = ${positionIdVal},
+            divisionId = ${divisionIdVal})}">
+            <i class="fas fa-angle-double-right"></i>
+        </a>
+    </div>
+</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -134,8 +154,9 @@
         document.getElementById("get-name").innerText = name;
     }
 </script>
-
+<div th:replace="~{layout :: go-top-html}"></div>
 <footer th:replace="~{layout :: footer}"></footer>
 </body>
+<script th:replace="~{layout :: go-top-js}"></script>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 </html>

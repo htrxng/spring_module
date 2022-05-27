@@ -3,30 +3,50 @@ package com.codegym.dto;
 import com.codegym.model.customer.Customer;
 import com.codegym.model.employee.Employee;
 import com.codegym.model.facility.Facility;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-public class ContractDto {
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+
+public class ContractDto implements Validator {
     private Integer contractId;
     private String contractStartDate;
     private String contractEndDate;
-    private Double contractDeposit;
-    private Double contractTotalMoney;
+    @Pattern(regexp = "[+]?\\d*\\.?\\d*",message = "Deposit must be a number.")
+    private String contractDeposit;
+    private String contractTotalMoney;
     private Customer customer;
     private Employee employee;
     private Facility facility;
 
+    @Override
+    public void validate(Object target, Errors errors) {
+        ContractDto contractDto = (ContractDto) target;
+        if ("".equals(contractDto.contractStartDate)) {
+            errors.rejectValue("contractStartDate", "dob.checkEmpty", "giảng làm !");
+        } else if (!LocalDate.parse(contractDto.contractStartDate).isAfter(LocalDate.now())) {
+            errors.rejectValue("contractStartDate", "contract.checkStartDate", "giảng làm !");
+        } else if ("".equals(contractDto.contractEndDate)) {
+            errors.rejectValue("contractEndDate", "dob.checkEmpty", "giảng làm !");
+        } else if (!LocalDate.parse(contractDto.contractEndDate).isAfter(LocalDate.parse(contractDto.contractStartDate))) {
+            errors.rejectValue("contractEndDate", "contract.checkEndDate", "giảng làm !");
+        }
+        if(contractDto.customer == null) {
+            errors.rejectValue("customer","customer.forbidden","An unknown error");
+        }
+        if(contractDto.employee == null) {
+            errors.rejectValue("employee","employee.forbidden","An unknown error");
+        }
+        if(contractDto.facility == null) {
+            errors.rejectValue("facility","facility.forbidden","An unknown error");
+        }
+    }
+
     public ContractDto() {
     }
 
-    public ContractDto(Integer contractId, String contractStartDate, String contractEndDate, Double contractDeposit, Double contractTotalMoney, Customer customer, Employee employee, Facility facility) {
-        this.contractId = contractId;
-        this.contractStartDate = contractStartDate;
-        this.contractEndDate = contractEndDate;
-        this.contractDeposit = contractDeposit;
-        this.contractTotalMoney = contractTotalMoney;
-        this.customer = customer;
-        this.employee = employee;
-        this.facility = facility;
-    }
+
 
     public Integer getContractId() {
         return contractId;
@@ -52,19 +72,19 @@ public class ContractDto {
         this.contractEndDate = contractEndDate;
     }
 
-    public Double getContractDeposit() {
+    public String getContractDeposit() {
         return contractDeposit;
     }
 
-    public void setContractDeposit(Double contractDeposit) {
+    public void setContractDeposit(String contractDeposit) {
         this.contractDeposit = contractDeposit;
     }
 
-    public Double getContractTotalMoney() {
+    public String getContractTotalMoney() {
         return contractTotalMoney;
     }
 
-    public void setContractTotalMoney(Double contractTotalMoney) {
+    public void setContractTotalMoney(String contractTotalMoney) {
         this.contractTotalMoney = contractTotalMoney;
     }
 
@@ -91,4 +111,11 @@ public class ContractDto {
     public void setFacility(Facility facility) {
         this.facility = facility;
     }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+
 }

@@ -10,6 +10,7 @@ public class Facility {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer facilityId;
+    private String facilityCode;
     private String facilityName;
     private Integer facilityArea;
     private Double facilityCost;
@@ -33,8 +34,9 @@ public class Facility {
     public Facility() {
     }
 
-    public Facility(Integer facilityId, String facilityName, Integer facilityArea, Double facilityCost, Integer facilityMaxPeople, String standardRoom, String descriptionOtherConvenience, Double poolArea, Integer numberOfFloors, FacilityType facilityType, RentType rentType, List<Contract> contractList) {
+    public Facility(Integer facilityId, String facilityCode, String facilityName, Integer facilityArea, Double facilityCost, Integer facilityMaxPeople, String standardRoom, String descriptionOtherConvenience, Double poolArea, Integer numberOfFloors, FacilityType facilityType, RentType rentType, List<Contract> contractList) {
         this.facilityId = facilityId;
+        this.facilityCode = facilityCode;
         this.facilityName = facilityName;
         this.facilityArea = facilityArea;
         this.facilityCost = facilityCost;
@@ -46,6 +48,14 @@ public class Facility {
         this.facilityType = facilityType;
         this.rentType = rentType;
         this.contractList = contractList;
+    }
+
+    public String getFacilityCode() {
+        return facilityCode;
+    }
+
+    public void setFacilityCode(String facilityCode) {
+        this.facilityCode = facilityCode;
     }
 
     public List<Contract> getContractList() {

@@ -16,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -58,7 +60,8 @@ public class EmployeeController {
         String keyWordNameVal = keyWordName.orElse("");
         String positionIdVal = positionId.orElse("%");
         String divisionIdVal = divisionId.orElse("%");
-        model.addAttribute("employees", this.iEmployeeService.findAllPaging(keyWordNameVal, positionIdVal, divisionIdVal, pageable));
+        model.addAttribute("employees", this.iEmployeeService.findAllPaging
+                (keyWordNameVal, positionIdVal, divisionIdVal, pageable));
         model.addAttribute("keyWordNameVal", keyWordNameVal);
         model.addAttribute("positionIdVal", positionIdVal);
         model.addAttribute("divisionIdVal", divisionIdVal);
@@ -68,16 +71,24 @@ public class EmployeeController {
     @GetMapping(value = "/addNewEmployee")
     public String goAddEmployee(Model model) {
         EmployeeDto employeeDto = new EmployeeDto();
-        model.addAttribute("employee", employeeDto);
+        model.addAttribute("employeeDto", employeeDto);
         return "employee/create";
     }
 
     @PostMapping(value = "/addEmployeeToSystem")
-    public String addCustomer(@ModelAttribute EmployeeDto employeeDto, RedirectAttributes redirectAttributes) {
-        Employee employee = new Employee();
-        BeanUtils.copyProperties(employeeDto, employee);
-        iEmployeeService.save(employee);
-        return "redirect:/employee/list";
+    public String addCustomer(@ModelAttribute @Validated EmployeeDto employeeDto,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirectAttributes) {
+        new EmployeeDto().validate(employeeDto,bindingResult);
+        if(bindingResult.hasFieldErrors()) {
+            return "employee/create";
+        } else {
+            Employee employee = new Employee();
+            employee.setEmployeeSalary(Double.parseDouble(employeeDto.getEmployeeSalary()));
+            BeanUtils.copyProperties(employeeDto, employee);
+            iEmployeeService.save(employee);
+            return "redirect:/employee/list";
+        }
     }
 
     @GetMapping("/detailForm")
@@ -89,17 +100,27 @@ public class EmployeeController {
     @GetMapping("/editForm")
     public String goEditForm(@RequestParam String id, Model model) {
         EmployeeDto employeeDto = new EmployeeDto();
-        BeanUtils.copyProperties(this.iEmployeeService.findById(Integer.parseInt(id)), employeeDto);
-        model.addAttribute("employee", employeeDto);
+        Employee employee = this.iEmployeeService.findById(Integer.parseInt(id));
+        BeanUtils.copyProperties(employee, employeeDto);
+        employeeDto.setEmployeeSalary(String.valueOf(employee.getEmployeeSalary()));
+        model.addAttribute("employeeDto", employeeDto);
         return "/employee/edit";
     }
 
     @PostMapping("/update")
-    public String updateEmployee(@ModelAttribute EmployeeDto employeeDto, RedirectAttributes redirectAttributes) {
-        Employee employee = new Employee();
-        BeanUtils.copyProperties(employeeDto, employee);
-        iEmployeeService.save(employee);
-        return "redirect:/employee/list";
+    public String updateEmployee(@ModelAttribute @Validated  EmployeeDto employeeDto,
+                                 BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes) {
+        new EmployeeDto().validate(employeeDto,bindingResult);
+        if(bindingResult.hasFieldErrors()) {
+            return "/employee/edit";
+        } else {
+            Employee employee = new Employee();
+            BeanUtils.copyProperties(employeeDto, employee);
+            employee.setEmployeeSalary(Double.parseDouble(employeeDto.getEmployeeSalary()));
+            iEmployeeService.save(employee);
+            return "redirect:/employee/list";
+        }
     }
 
     @PostMapping("/delete")

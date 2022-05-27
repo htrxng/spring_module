@@ -20,6 +20,323 @@
                 rel="stylesheet"
         />
     </th:block>
+    <style th:fragment="css-nhap-nhay">
+        /*h1{*/
+        /*    height: 300px;*/
+        /*    font-size: 300px;*/
+        /*width: 300px}*/
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+        }
+
+        @-webkit-keyframes my {
+            0% {
+                color: #F8CD0A;
+            }
+            /*10% { color: red; }*/
+            /*20% { color: cornflowerblue; }*/
+            30% {
+                color: cornflowerblue;
+            }
+            /*40% { color: palevioletred; }*/
+            60% {
+                color: cyan;
+            }
+            /*70% { color:  deeppink; }*/
+            /*80% { color: yellow; }*/
+            /*90% { color: white; }*/
+            100% {
+                color: green;
+            }
+        }
+
+        @-moz-keyframes my {
+            0% {
+                color: #F8CD0A;
+            }
+            /*10% { color: red; }*/
+            /*20% { color: cornflowerblue; }*/
+            30% {
+                color: cornflowerblue;
+            }
+            /*40% { color: palevioletred; }*/
+            60% {
+                color: cyan;
+            }
+            /*70% { color:  deeppink; }*/
+            /*80% { color: yellow; }*/
+            /*90% { color: white; }*/
+            100% {
+                color: green;
+            }
+        }
+
+        @-o-keyframes my {
+            0% {
+                color: #F8CD0A;
+            }
+            /*10% { color: red; }*/
+            /*20% { color: cornflowerblue; }*/
+            30% {
+                color: cornflowerblue;
+            }
+            /*40% { color: palevioletred; }*/
+            60% {
+                color: cyan;
+            }
+            /*70% { color:  deeppink; }*/
+            /*80% { color: yellow; }*/
+            /*90% { color: white; }*/
+            100% {
+                color: green;
+            }
+        }
+
+        @keyframes my {
+            0% {
+                color: #F8CD0A;
+            }
+            /*10% { color: red; }*/
+            /*20% { color: cornflowerblue; }*/
+            30% {
+                color: cornflowerblue;
+            }
+            /*40% { color: palevioletred; }*/
+            60% {
+                color: cyan;
+            }
+            /*70% { color:  deeppink; }*/
+            /*80% { color: yellow; }*/
+            /*90% { color: white; }*/
+            100% {
+                color: green;
+            }
+        }
+
+        .text-animation {
+            font-size: 80px;
+            font-weight: bold;
+            -webkit-animation: my 700ms infinite;
+            -moz-animation: my 700ms infinite;
+            -o-animation: my 700ms infinite;
+            animation: my 700ms infinite;
+        }
+    </style>
+    <style th:fragment="css-blink">
+        @font-face {
+            font-family: Clip;
+            src: url("https://acupoftee.github.io/fonts/Clip.ttf");
+        }
+
+        /*body {*/
+        /*    background-color: #141114;*/
+        /*    background-image: linear-gradient(335deg, black 23px, transparent 23px),*/
+        /*    linear-gradient(155deg, black 23px, transparent 23px),*/
+        /*    linear-gradient(335deg, black 23px, transparent 23px),*/
+        /*    linear-gradient(155deg, black 23px, transparent 23px);*/
+        /*    background-size: 58px 58px;*/
+        /*    background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;*/
+        /*}*/
+
+        .sign {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 50%;
+            /*background-image: radial-gradient(*/
+            /*        ellipse 50% 35% at 50% 50%,*/
+            /*        #6b1839,*/
+            /*        transparent*/
+            /*);*/
+            transform: translate(-50%, -50%);
+            letter-spacing: 2;
+            left: 50%;
+            top: 50%;
+            font-family: "Clip";
+            text-transform: uppercase;
+            font-size: 6em;
+            color: #ffe6ff;
+            text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
+            -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
+            0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+            animation: shine 2s forwards, flicker 3s infinite;
+        }
+
+        @keyframes blink {
+            0%,
+            22%,
+            36%,
+            75% {
+                color: #ffe6ff;
+                text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
+                -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
+                0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+            }
+            28%,
+            33% {
+                color: #ff65bd;
+                text-shadow: none;
+            }
+            82%,
+            97% {
+                color: #ff2483;
+                text-shadow: none;
+            }
+        }
+
+        .flicker {
+            animation: shine 2s forwards, blink 3s 2s infinite;
+        }
+
+        .fast-flicker {
+            animation: shine 2s forwards, blink 10s 1s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                color: #6b1839;
+                text-shadow: none;
+            }
+            100% {
+                color: #ffe6ff;
+                text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
+                -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
+                0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+            }
+        }
+
+        @keyframes flicker {
+            from {
+                opacity: 1;
+            }
+
+            4% {
+                opacity: 0.9;
+            }
+
+            6% {
+                opacity: 0.85;
+            }
+
+            8% {
+                opacity: 0.95;
+            }
+
+            10% {
+                opacity: 0.9;
+            }
+
+            11% {
+                opacity: 0.922;
+            }
+
+            12% {
+                opacity: 0.9;
+            }
+
+            14% {
+                opacity: 0.95;
+            }
+
+            16% {
+                opacity: 0.98;
+            }
+
+            17% {
+                opacity: 0.9;
+            }
+
+            19% {
+                opacity: 0.93;
+            }
+
+            20% {
+                opacity: 0.99;
+            }
+
+            24% {
+                opacity: 1;
+            }
+
+            26% {
+                opacity: 0.94;
+            }
+
+            28% {
+                opacity: 0.98;
+            }
+
+            37% {
+                opacity: 0.93;
+            }
+
+            38% {
+                opacity: 0.5;
+            }
+
+            39% {
+                opacity: 0.96;
+            }
+
+            42% {
+                opacity: 1;
+            }
+
+            44% {
+                opacity: 0.97;
+            }
+
+            46% {
+                opacity: 0.94;
+            }
+
+            56% {
+                opacity: 0.9;
+            }
+
+            58% {
+                opacity: 0.9;
+            }
+
+            60% {
+                opacity: 0.99;
+            }
+
+            68% {
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 0.9;
+            }
+
+            72% {
+                opacity: 0.95;
+            }
+
+            93% {
+                opacity: 0.93;
+            }
+
+            95% {
+                opacity: 0.95;
+            }
+
+            97% {
+                opacity: 0.93;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
 </head>
 <body>
 <header th:fragment="header">
@@ -37,7 +354,7 @@
                         src="https://cdn.nhanlucnganhluat.vn/uploads/images/051D288B/logo/2018-12/Logo-FURAMA-RESORT.jpg"
                         width="25%" alt=""></div>
                 <div class="text-success">
-                    <h1 class="mb-3" style="font-style: italic">KHU NGHỈ DƯỠNG FURAMA ĐÀ NẴNG</h1>
+                    <h1 class="mb-3 text-animation" style="font-style: italic">KHU NGHỈ DƯỠNG FURAMA ĐÀ NẴNG</h1>
                     <h4 class="mb-3">Huu Trung</h4>
                     <!--                    <a class="btn btn-outline-light btn-lg" href="#!" role="button"-->
                     <!--                    >Call to action</a>-->
@@ -870,20 +1187,22 @@
         <section class="">
             <h1 style="text-align: center;color: blue">HELLO WORLD! - WE ARE C1221G1. </h1>
             <h6 style="text-align: center">Tutor: CHÁNH TV
-                <hr> Instructor: TIẾN NVT </h6>
+                <hr>
+                Instructor: TIẾN NVT
+            </h6>
             <p>================================================================================================</p>
         </section>
         <!-- Section: Form -->
 
         <!-- Section: Text -->
-<!--        <section class="mb-4">-->
-<!--            <p>-->
-<!--                “And once the storm is over you won’t remember how you made it through, how you managed to survive. You-->
-<!--                won’t even be sure, in fact, whether the storm is really over. But one thing is certain. When you come-->
-<!--                out of the storm you won’t be the same person who walked in. That’s what this storm’s all about.”-->
-<!--                -Haruki Murakami- -->
-<!--            </p>-->
-<!--        </section>-->
+        <!--        <section class="mb-4">-->
+        <!--            <p>-->
+        <!--                “And once the storm is over you won’t remember how you made it through, how you managed to survive. You-->
+        <!--                won’t even be sure, in fact, whether the storm is really over. But one thing is certain. When you come-->
+        <!--                out of the storm you won’t be the same person who walked in. That’s what this storm’s all about.”-->
+        <!--                -Haruki Murakami- -->
+        <!--            </p>-->
+        <!--        </section>-->
         <!-- Section: Text -->
 
         <!-- Section: Links -->
@@ -1012,7 +1331,43 @@
     <!-- Copyright -->
 </footer>
 <!-- Footer -->
+<div th:fragment="go-top-html">
+    <!-- Back to top button -->
+    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</div>
+
 </body>
+<script th:fragment="go-top-js">
+    //Get the button
+    let mybutton = document.getElementById("btn-back-to-top");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+        ) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    mybutton.addEventListener("click", backToTop);
+
+    function backToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
 <th:block th:fragment="linkbootstrapJS">
     <!-- MDB -->
     <script

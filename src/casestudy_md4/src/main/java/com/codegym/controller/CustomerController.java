@@ -45,7 +45,7 @@ public class CustomerController {
         model.addAttribute("keyWordNameVal", keyWordNameVal);
         model.addAttribute("keyWordPhoneVal", keyWordPhoneVal);
         model.addAttribute("customerTypeIdVal", customerTypeIdVal);
-        model.addAttribute("message","Hữu Trung xin chào toàn thể lớp C12 ^^");
+//        model.addAttribute("message","Hữu Trung xin chào toàn thể lớp C12 ^^");
         return "/customer/list";
     }
 

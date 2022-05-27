@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+    <style th:replace="~{layout:: css-nhap-nhay}"></style>
 </head>
 <body>
 <header th:replace="~{layout :: header}"></header>
 <div>
-    <h1 style="text-align: center;color: olivedrab; font-style: italic"> CUSTOMER LIST</h1>
+    <h1 class="text-animation" style="text-align: center;color: olivedrab; font-style: italic"> CUSTOMER LIST</h1>
 
     <h4 style="color: red; text-align: center" th:text="${message}" id="message"></h4>
 
@@ -16,10 +17,16 @@
     <div class="row" style="text-align: center">
         <div class="row-lg-12">
             <a th:if="${customers.hasPrevious()}"
+               th:href="@{/customer/list(page=0, keyWordName=${keyWordNameVal},
+                                                                     keyWordPhone = ${keyWordPhoneVal},
+                                                                     customerTypeId = ${customerTypeIdVal})}">
+                <i class="fas fa-angle-double-left"></i>
+            </a>
+            <a th:if="${customers.hasPrevious()}"
                th:href="@{/customer/list(page=${customers.number - 1 }, keyWordName=${keyWordNameVal},
                                                                      keyWordPhone = ${keyWordPhoneVal},
                                                                      customerTypeId = ${customerTypeIdVal})}">
-                Previous
+                <i class="fas fa-angle-left"></i>
             </a>
             <span th:text="${customers.number + 1 }"></span>/
             <span th:text="${customers.totalPages}"></span>
@@ -27,7 +34,13 @@
                th:href="@{/customer/list(page=${customers.number + 1 }, keyWordName=${keyWordNameVal},
                                                                      keyWordPhone = ${keyWordPhoneVal},
                                                                      customerTypeId = ${customerTypeIdVal})}">
-                Next
+                <i class="fas fa-angle-right"></i>
+            </a>
+            <a th:if="${customers.hasNext()}"
+               th:href="@{/customer/list(page=${customers.totalPages -1 }, keyWordName=${keyWordNameVal},
+                                                                     keyWordPhone = ${keyWordPhoneVal},
+                                                                     customerTypeId = ${customerTypeIdVal})}">
+                <i class="fas fa-angle-double-right"></i>
             </a>
         </div>
     </div>
@@ -138,9 +151,11 @@
         document.getElementById("get-name").innerText = name;
     }
 </script>
-
+<div th:replace="~{layout :: go-top-html}"></div>
 </body>
+
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+<script th:replace="~{layout :: go-top-js}"></script>
 <script>
     const timeout = document.getElementById('message');
     setTimeout(hideElement, 3000) //milliseconds until timeout//

@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <title></title>
     <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+    <style th:replace="~{layout:: css-nhap-nhay}"></style>
 </head>
 <body>
 <header th:replace="~{layout :: header}"></header>
 <div th:replace="~{layout :: spinner}"></div>
+<div th:replace="~{layout :: go-top-html}"></div>
 <footer th:replace="~{layout :: footer}"></footer>
 </body>
+<script th:replace="~{layout :: go-top-js}"></script>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 </html>

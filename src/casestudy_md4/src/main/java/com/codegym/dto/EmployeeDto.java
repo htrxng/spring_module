@@ -3,24 +3,56 @@ package com.codegym.dto;
 import com.codegym.model.employee.Division;
 import com.codegym.model.employee.EducationDegree;
 import com.codegym.model.employee.Position;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-public class EmployeeDto {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+public class EmployeeDto implements Validator {
     private Integer employeeId;
+    @NotBlank(message = "Name must be not blank")
     private String employeeName;
     private String employeeDateOfBirth;
+    @NotBlank(message = "this information must be not blank")
     private String employeeIdCard;
-    private Double employeeSalary;
+    @Pattern(regexp = "[+]?\\d*\\.?\\d*",message = "Cost must be a number.")
+    private String employeeSalary;
     private String employeePhone;
+    @Email
     private String employeeEmail;
     private String employeeAddress;
     private Position position;
     private EducationDegree educationDegree;
     private Division division;
 
+    @Override
+    public void validate(Object target, Errors errors) {
+        EmployeeDto employeeDto = (EmployeeDto) target;
+        if(!employeeDto.getEmployeePhone().matches("((\\(84\\)\\+(90))|(\\(84\\)\\+(91))|(090)|(091))\\d{7}")) {
+            errors.rejectValue("employeePhone","phone.forbidden","An unknown error");
+        }
+        if(!employeeDto.getEmployeeEmail().matches("([a-z]\\w+@[a-z]{2,}\\.)\\w{2,10}(\\.\\w{2,3})?")) {
+            errors.rejectValue("employeeEmail","email.forbidden","An unknown error");
+        }
+        if(!employeeDto.getEmployeeIdCard().matches("\\d{9}|\\d{12}")) {
+            errors.rejectValue("employeeIdCard","idCard.forbidden","An unknown error");
+        }
+        if(employeeDto.position == null) {
+            errors.rejectValue("position","position.forbidden","An unknown error");
+        }
+        if(employeeDto.educationDegree == null) {
+            errors.rejectValue("educationDegree","educationDegree.forbidden","An unknown error");
+        }
+        if(employeeDto.division == null) {
+            errors.rejectValue("division","division.forbidden","An unknown error");
+        }
+    }
     public EmployeeDto() {
     }
 
-    public EmployeeDto(Integer employeeId, String employeeName, String employeeDateOfBirth, String employeeIdCard, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division) {
+    public EmployeeDto(Integer employeeId, @NotBlank(message = "Name must be not blank") String employeeName, String employeeDateOfBirth, @NotBlank(message = "this information must be not blank") String employeeIdCard, @Pattern(regexp = "[+]?\\d*\\.?\\d*", message = "Cost must be a number.") String employeeSalary, String employeePhone, @Email String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeDateOfBirth = employeeDateOfBirth;
@@ -66,11 +98,11 @@ public class EmployeeDto {
         this.employeeIdCard = employeeIdCard;
     }
 
-    public Double getEmployeeSalary() {
+    public String getEmployeeSalary() {
         return employeeSalary;
     }
 
-    public void setEmployeeSalary(Double employeeSalary) {
+    public void setEmployeeSalary(String employeeSalary) {
         this.employeeSalary = employeeSalary;
     }
 
@@ -121,4 +153,11 @@ public class EmployeeDto {
     public void setDivision(Division division) {
         this.division = division;
     }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+
 }

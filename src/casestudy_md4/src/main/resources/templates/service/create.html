@@ -8,32 +8,53 @@
 </head>
 <body>
 <header th:replace="~{layout :: header}"></header>
-<form action="#" th:action="@{/facility/addFacility}" th:object="${facility}" METHOD="post">
+<form action="#" th:action="@{/facility/addFacility}" th:object="${facilityDto}" METHOD="post">
     <fieldset class="w-75 mx-auto">
         <legend class="text-center my-4"><span class="text-secondary">ADD SERVICE</span></legend>
         <div>
             <input type="hidden" th:field="*{facilityId}" disabled>
         </div>
-
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="facilityCode" type="text" th:field="*{facilityCode}"/>
+            <label class="form-label" for="facilityCode">Service Code</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('facilityCode')}" th:errors="*{facilityCode}"></p>
+        </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="name" type="text" th:field="*{facilityName}"/>
             <label class="form-label" for="name">Service Name</label>
         </div>
+        <div class="w-25 mx-auto my-4">
+        <p style="color: red" th:if="${#fields.hasErrors('facilityName')}" th:errors="*{facilityName}"></p>
+            </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="serviceArea" type="text" th:field="*{facilityArea}"/>
             <label class="form-label" for="serviceArea">Area</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('facilityArea')}" th:errors="*{facilityArea}"></p>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="serviceCost" type="text" th:field="*{facilityCost}"/>
             <label class="form-label" for="serviceCost">Cost</label>
         </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('facilityCost')}" th:errors="*{facilityCost}"></p>
+        </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="serviceMaxPeople" type="text" th:field="*{facilityMaxPeople}"/>
             <label class="form-label" for="serviceMaxPeople">Capacity</label>
         </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('facilityMaxPeople')}" th:errors="*{facilityMaxPeople}"></p>
+        </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="standardRoom" type="text" th:field="*{standardRoom}"/>
             <label class="form-label" for="standardRoom">Standard</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('standardRoom')}" th:errors="*{standardRoom}"></p>
         </div>
         <div class="form-outline w-25 mx-auto my-4">
             <input class="form-control" id="descriptionOtherConvenience" type="text" th:field="*{descriptionOtherConvenience}"/>
@@ -43,24 +64,35 @@
             <input class="form-control" id="pool" type="text" th:field="*{poolArea}"/>
             <label class="form-label" for="pool">Pool Area</label>
         </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('poolArea')}" th:errors="*{poolArea}"></p>
+        </div>
         <div class="form-outline w-25 mx-auto my-4" id="input-floors">
             <input class="form-control" id="numberOfFloors" type="text" th:field="*{numberOfFloors}"/>
             <label class="form-label" for="numberOfFloors">Number Of Floors</label>
         </div>
-
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('numberOfFloors')}" th:errors="*{numberOfFloors}"></p>
+        </div>
         <div class="form-outline w-25 mx-auto my-4">
             <select th:field="*{facilityType}" class="form-select" aria-label="Disabled select example" id="select-facility">
-                <option value="0" th:text="---FacilityType---"></option>
+                <option value="" th:text="---FacilityType---"></option>
                 <option th:each="facilityType : ${facilityList}" th:value="${facilityType.facilityTypeId}"
                         th:text="${facilityType.facilityTypeName}"></option>
             </select>
         </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('facilityType')}" th:errors="*{facilityType}"></p>
+        </div>
         <div class="form-outline w-25 mx-auto my-4">
             <select th:field="*{rentType}" class="form-select" aria-label="Disabled select example">
-                <option value="0" th:text="---RentType---"></option>
+                <option value="" th:text="---RentType---"></option>
                 <option th:each="rentType : ${rentTypeList}" th:value="${rentType.rentTypeId}"
                         th:text="${rentType.rentTypeName}"></option>
             </select>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('rentType')}" th:errors="*{rentType}"></p>
         </div>
     </fieldset>
     <div class="text-center">

@@ -43,14 +43,14 @@ public class CustomerDto implements Validator {
         if(!customerDto.getCustomerEmail().matches("([a-z]\\w+@[a-z]{2,}\\.)\\w{2,10}(\\.\\w{2,3})?")) {
             errors.rejectValue("customerEmail","email.forbidden","An unknown error");
         }
-        if(!customerDto.getCustomerEmail().matches("\\d{9}|\\d{12}")) {
+        if(!customerDto.getCustomerIdCard().matches("\\d{9}|\\d{12}")) {
             errors.rejectValue("customerIdCard","idCard.forbidden","An unknown error");
         }
         if(customerDto.getCustomerGender()== -1) {
             errors.rejectValue("customerGender","gender.forbidden","An unknown error");
         }
         if(customerDto.getCustomerType() == null) {
-            errors.rejectValue("customerType","customerType.forbidden","An un known error");
+            errors.rejectValue("customerType","customerType.forbidden","An unknown error");
         }
     }
 

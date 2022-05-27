@@ -17,6 +17,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,14 +69,23 @@ public class ContractController {
     @GetMapping(value = "/addNewContract")
     public String goAddContract(Model model) {
         ContractDto contractDto = new ContractDto();
-        model.addAttribute("contract",contractDto);
+        model.addAttribute("contractDto",contractDto);
         return "contract/create";
     }
     @PostMapping(value = "/addCustomerToSystem")
-    public String addContract(@ModelAttribute ContractDto contractDto, RedirectAttributes redirectAttributes) {
-        Contract contract = new Contract();
-        BeanUtils.copyProperties(contractDto,contract);
-        iContractService.save(contract);
-        return "redirect:/contract/addNewContract";
+    public String addContract(@ModelAttribute @Validated ContractDto contractDto,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirectAttributes) {
+        new ContractDto().validate(contractDto,bindingResult);
+        if(bindingResult.hasFieldErrors()) {
+            return "contract/create";
+        }  else {
+            Contract contract = new Contract();
+            BeanUtils.copyProperties(contractDto, contract);
+            contract.setContractDeposit(Double.valueOf(contractDto.getContractDeposit()));
+            contract.setContractTotalMoney(contractDto.getFacility().getFacilityCost());
+            iContractService.save(contract);
+            return "redirect:/contract/addNewContract";
+        }
     }
 }
