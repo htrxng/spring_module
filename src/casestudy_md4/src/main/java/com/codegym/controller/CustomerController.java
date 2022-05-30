@@ -110,5 +110,9 @@ public class CustomerController {
         redirectAttributes.addFlashAttribute("message","Delete successfully!");
         return "redirect:/customer/list";
     }
-
+    @GetMapping("occ-list")
+    public String goOccList(Model model){
+        model.addAttribute("occupiedList",this.iCustomerService.findAllOcc());
+        return "customer/occ-list";
+    }
 }

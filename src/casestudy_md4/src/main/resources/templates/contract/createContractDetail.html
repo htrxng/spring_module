@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<form th:action="@{/contract/addContractDetail}" th:object="${contractDetailDto}" method="post">
+    <fieldset class="w-75 mx-auto">
+        <legend class="text-center my-4"><span class="text-secondary">Others service</span></legend>
+        <div>
+            <input type="hidden" th:field="*{contract}" >
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{attachService}" class="form-select" aria-label="Disabled select example">
+                <option value="0" th:text="---attachService---"></option>
+                <option th:each="attachService : ${attachServiceList}" th:value="${attachService.attachServiceId}"
+                        th:text="${attachService.attachServiceName}"></option>
+            </select>
+        </div>
+        <div>
+            <label>
+                Quantity
+                <input type="number" th:field="*{quantity}" class="form-control" style="text-align: center">
+            </label>
+        </div>
+
+<!--        <table class="table align-middle mb-0 bg-white">-->
+<!--            <thead class="bg-light">-->
+<!--                <tr>-->
+<!--                    <th>Stt</th>-->
+<!--                    <th>Attach Service Name</th>-->
+<!--                    <th>Cost</th>-->
+<!--                    <th>Unit</th>-->
+<!--                    <th>Status</th>-->
+<!--                    <th>Action</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="attachService, stt : ${attachServiceList}">-->
+<!--                <th scope="row" th:text="${stt.count}"></th>-->
+<!--                <td>-->
+<!--                    <p class="fw-normal mb-1" th:text="${attachService.attachServiceName}"></p>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <p class="fw-normal mb-1" th:text="${attachService.attachServiceCost}"></p>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <p class="fw-normal mb-1" th:text="${attachService.attachServiceUnit}"></p>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <p class="fw-normal mb-1" th:text="${attachService.attachServiceStatus}"></p>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <label>-->
+<!--                        <button class="btn btn-secondary mt-4 mx-2">  USE SERVICE </button>-->
+<!--                    </label>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">ADD</button>
+        <a href="/contract/list">
+            <button type="button" class="btn btn-warning mt-4 mx-2">Cancel</button>
+        </a>
+    </div>
+
+</form>
+
+<footer th:replace="~{layout :: footer}"></footer>
+
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+</html>

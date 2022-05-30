@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer List</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<h1 class="text-center text-light mx-auto">FURAMA RESORT MANAGEMENT</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">OCCUPIED LIST</a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/home}">Furama</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/customer/list}">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/employee/list}">Employee</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/service/list}">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/contract/list}">Contract</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<h2 class="text-center text-dark mx-auto">CUSTOMER LIST</h2>
+<div class="container">
+    <table class="table w-75 mx-auto shadow-2-strong">
+        <thead class="table-dark p-3">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Customer Code</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Customer Type</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Attach Service</th>
+            <th scope="col">Attach Service Status</th>
+            <th scope="col">Quantity</th>
+            <th scope="col" colspan="2" class="text-center">Function</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="occ,loop : ${occupiedList}">
+            <th scope="row" th:text="${loop.count}"></th>
+            <!--            <td th:text="${occ.occCustomerId}"></td>-->
+            <td th:text="${occ.occCustomerCode}"></td>
+            <td th:text="${occ.occCustomerName}"></td>
+            <td th:text="${occ.occCustomerTypeName}"></td>
+            <td th:text="${occ.occStartDate}"></td>
+            <td th:text="${occ.occEndDate}"></td>
+            <td th:text="${occ.attachServiceName}"></td>
+            <td th:text="${occ.attachServiceStatus}"></td>
+            <td th:text="${occ.quantity}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" th:action="@{/customer/delete}">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="get-id">
+                    <h1 style="color: black" id="get-name">
+                        Name Customer:
+                    </h1>
+                    <hr>
+                    <p>Are You Sure ???</p>
+                    <p style="color: red">this action cant not revert</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete It !</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function deleteModal(id, name) {
+        document.getElementById("get-id").value = id;
+        document.getElementById("get-name").innerText = name;
+    }
+</script>
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+</html>

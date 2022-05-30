@@ -1,5 +1,6 @@
 package com.codegym.controller;
 
+import com.codegym.dto.ContractDetailDto;
 import com.codegym.dto.ContractDto;
 import com.codegym.model.contract.AttachService;
 import com.codegym.model.contract.Contract;
@@ -19,10 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -66,13 +64,19 @@ public class ContractController {
         return this.iContractDetailService.findAll();
     }
 
+    @GetMapping(value = "/list")
+    public String showList(Model model) {
+        model.addAttribute("contractList",this.iContractService.findAll());
+        return "/contract/list";
+    }
+
     @GetMapping(value = "/addNewContract")
     public String goAddContract(Model model) {
         ContractDto contractDto = new ContractDto();
         model.addAttribute("contractDto",contractDto);
         return "contract/create";
     }
-    @PostMapping(value = "/addCustomerToSystem")
+    @PostMapping(value = "/addContractToSystem")
     public String addContract(@ModelAttribute @Validated ContractDto contractDto,
                               BindingResult bindingResult,
                               RedirectAttributes redirectAttributes) {
@@ -85,7 +89,25 @@ public class ContractController {
             contract.setContractDeposit(Double.valueOf(contractDto.getContractDeposit()));
             contract.setContractTotalMoney(contractDto.getFacility().getFacilityCost());
             iContractService.save(contract);
-            return "redirect:/contract/addNewContract";
+
+            return "redirect:/contract/list";
         }
+    }
+
+    @GetMapping(value = "/addContractDetail")
+    public String addContractDetail(@RequestParam  Integer id, Model model) {
+        Contract contract = this.iContractService.findById(id);
+        ContractDetailDto contractDetailDto = new ContractDetailDto();
+        contractDetailDto.setContract(contract);
+        model.addAttribute("contractDetailDto",contractDetailDto);
+        return "contract/createContractDetail";
+    }
+    @PostMapping(value = "/addContractDetail")
+    public String addContract(@ModelAttribute ContractDetailDto contractDetailDto,
+                              RedirectAttributes redirectAttributes) {
+        ContractDetail contractDetail = new ContractDetail();
+        BeanUtils.copyProperties(contractDetailDto,contractDetail);
+        iContractDetailService.save(contractDetail);
+        return "redirect:/contract/list";
     }
 }

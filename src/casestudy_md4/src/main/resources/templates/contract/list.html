@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<a class="btn btn-success" th:href="@{/contract/addNewContract}" style="color: white">+ ADD NEW CONTRACT</a>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+        <th>Stt</th>
+        <th>StartDate</th>
+        <th>EndDate</th>
+        <th>Deposit</th>
+        <th>Total</th>
+        <th>Customer</th>
+        <th>Employee</th>
+        <th>Facility</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contract, stt : ${contractList}">
+        <th scope="row" th:text="${stt.count}"></th>
+        <td>
+            <p class="fw-normal mb-1" th:text="${contract.contractStartDate}"></p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1" th:text="${contract.contractEndDate}"></p>
+        </td>
+        <td th:text="${contract.contractDeposit}">
+        </td>
+        <td th:text="${contract.contractTotalMoney}"></td>
+        <td th:text="${contract.customer.customerName}"></td>
+        <td th:text="${contract.employee.employeeName}"></td>
+        <td th:text="${contract.facility.facilityName}"></td>
+        <td>
+            <a class="btn btn-success" th:href="@{/contract/addContractDetail(id=${contract.contractId})}">ADD CONTRACT DETAIL</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:replace="~{layout :: go-top-html}"></div>
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+<script th:replace="~{layout :: go-top-js}"></script>
+<th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
+</html>

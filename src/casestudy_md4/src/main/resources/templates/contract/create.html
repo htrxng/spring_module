@@ -7,7 +7,8 @@
 </head>
 <body>
 <header th:replace="~{layout :: header}"></header>
-<form th:action="@{/contract/addCustomerToSystem}" th:object="${contractDto}" METHOD="post">
+<!--<a class="btn btn-success" th:href="@{/contract/addContractDetail(id=${contractDto.contractId})}" style="color: white; float: right">+ OTHERS SERVICE</a>-->
+<form th:action="@{/contract/addContractToSystem}" th:object="${contractDto}" METHOD="post">
     <fieldset class="w-75 mx-auto">
         <legend class="text-center my-4"><span class="text-secondary">ADD CONTRACT</span></legend>
         <div>
@@ -82,9 +83,5 @@
 </form>
 <footer th:replace="~{layout :: footer}"></footer>
 </body>
-
-<script>
-
-</script>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 </html>

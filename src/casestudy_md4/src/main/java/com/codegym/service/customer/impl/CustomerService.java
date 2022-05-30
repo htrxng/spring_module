@@ -1,5 +1,6 @@
 package com.codegym.service.customer.impl;
 
+import com.codegym.dto.OccupiedCustomerDto;
 import com.codegym.model.customer.Customer;
 import com.codegym.repository.customer.ICustomerRepository;
 import com.codegym.service.customer.ICustomerService;
@@ -43,5 +44,11 @@ public class CustomerService implements ICustomerService {
     public List<Customer> findAllCustomer() {
         return this.iCustomerRepository.findAll();
     }
+
+    @Override
+    public List<OccupiedCustomerDto> findAllOcc() {
+        return this.iCustomerRepository.findAllOcc();
+    }
+
 
 }
