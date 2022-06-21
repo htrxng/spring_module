@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block >
+        <!-- Font Awesome -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+                rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+                href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+                rel="stylesheet"
+        />
+    </th:block>
+</head>
+<body>
+<form action="/transaction/addNewTransaction" method="post" th:object="${transactionDto}">
+    <fieldset class="w-75 mx-auto" >
+        <legend class="text-center my-4"><span class="text-secondary">Tạo giao dịch</span></legend>
+        <div class="form-outline w-25 mx-auto my-4" >
+            <input class="form-control" id="transactionCode" type="text" th:field="*{transactionCode}"/>
+            <label class="form-label" for="transactionCode">Mã Giao Dịch</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('transactionCode')}" th:errors="*{transactionCode}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{customer}" class="form-select" aria-label="Disabled select example">
+                <option value="" th:text="---KháchHàng---"></option>
+                <option th:each="customer : ${customerList}" th:value="${customer.customerId}"
+                        th:text="${customer.customerName}"></option>
+            </select>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4" >
+            <input class="form-control" id="serviceType" type="text" th:field="*{serviceType}"/>
+            <label class="form-label" for="serviceType">Loại dịch vụ</label>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4" >
+            <input class="form-control" id="transactionDate" type="date" th:field="*{transactionDate}"/>
+            <label class="form-label" for="transactionDate">Ngày Giao Dịch</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('transactionDate')}" th:errors="*{transactionDate}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4" >
+            <input class="form-control" id="bill" type="number" th:field="*{bill}"/>
+            <label class="form-label" for="bill">Đơn giá</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('bill')}" th:errors="*{bill}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4" >
+            <input class="form-control" id="area" type="number" th:field="*{area}"/>
+            <label class="form-label" for="area">Diện tích</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></p>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">Lưu</button>
+        <a href="/transaction/list">
+            <button type="button" class="btn btn-warning mt-4 mx-2">Huỷ</button>
+        </a>
+    </div>
+</form>
+</body>
+<th:block >
+    <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+    ></script>
+</th:block>
+</html>

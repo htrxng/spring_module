@@ -20,10 +20,10 @@ public class Contract {
     @ManyToOne()
     @JoinColumn(name = "customer_id",referencedColumnName = "customerId")
     private Customer customer;
-
+    
     @ManyToOne()
     @JoinColumn(name = "employee_id",referencedColumnName = "employeeId")
-    private Employee employee;
+        private Employee employee;
 
     @ManyToOne()
     @JoinColumn(name = "facility_id",referencedColumnName = "facilityId")

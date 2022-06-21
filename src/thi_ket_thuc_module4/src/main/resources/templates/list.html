@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block >
+        <!-- Font Awesome -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+                rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+                href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+                rel="stylesheet"
+        />
+    </th:block>
+</head>
+<body>
+<h1 style="text-align: center;color: darkslategrey">ORDER LIST</h1>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+        <th>Stt</th>
+        <th>Mã đơn hàng</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá(USD)</th>
+        <th>Loại sản phẩm</th>
+        <th>Ngày mua</th>
+        <th>Số lượng</th>
+        <th>Tổng tiền(USD)</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order, stt : ${orderList}">
+        <th scope="row" th:text="${stt.count}"></th>
+        <td>
+            <p class="fw-normal mb-1" th:text="${order.orderId}"></p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1" th:text="${order.product.productName}"></p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1" th:text="${order.product.productPrice}"></p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1" th:text="${order.product.productType.productTypeName}"></p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1" th:text="${order.orderDate}"></p>
+        </td>
+        <td>
+            <p class="fw-normal mb-1" th:text="${order.quantity}"></p>
+        </td>
+
+        <td>
+            <p class="fw-normal mb-1" th:text="${order.product.productPrice}"></p>
+        </td>
+
+        <td>
+            <a class="btn btn-success" th:href="@{/order/editForm(id=${order.orderId})}">Sửa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<th:block >
+    <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+    ></script>
+</th:block>
+</html>

@@ -41,7 +41,8 @@ public class CustomerController {
         String keyWordNameVal = keyWordName.orElse("");
         String keyWordPhoneVal = keyWordPhone.orElse("");
         Integer customerTypeIdVal = customerTypeId.orElse(-1);
-        model.addAttribute("customers", this.iCustomerService.findAll(keyWordNameVal, keyWordPhoneVal, customerTypeIdVal, pageable));
+        model.addAttribute("customers",
+                this.iCustomerService.findAll(keyWordNameVal, keyWordPhoneVal, customerTypeIdVal, pageable));
         model.addAttribute("keyWordNameVal", keyWordNameVal);
         model.addAttribute("keyWordPhoneVal", keyWordPhoneVal);
         model.addAttribute("customerTypeIdVal", customerTypeIdVal);

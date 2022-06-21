@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block>
+        <!-- Font Awesome -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+                rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+                href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+                rel="stylesheet"
+        />
+    </th:block>
+
+</head>
+<body>
+<h2 style="text-align: center; font-style: oblique; color: darkslategray">DETAIL TRANSACTION</h2>
+<div id="detailTransaction" th:object="${transaction}">
+    <fieldset class="w-75 mx-auto">
+        <div class="form-outline w-25 mx-auto my-4">
+            Mã Giao Dịch :
+            <h6 class="form-control" th:text="*{transactionCode}"></h6>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            Loại dịch vụ :
+            <p th:text="*{serviceType}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            Ngày giao dịch :
+            <p th:text="*{transactionDate}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            Đơn giá :
+            <p th:text="*{bill}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            Diện tích :
+            <p th:text="*{area}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            Tên khách hàng :
+            <p th:text="*{customer.customerName}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            Số điện thoại "
+            <p th:text="*{customer.phone}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            Email:
+            <p th:text="*{customer.email}"></p>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <a class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal"
+            th:attr="onclick=|deleteModal('${transaction.transactionId}', '${transaction.transactionCode}')|">
+            Xoá
+        </a>
+        <a href="/transaction/list">
+            <button type="button" class="btn btn-warning mt-4 mx-2">Quay lại</button>
+        </a>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Transaction</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" th:action="@{/transaction/delete}">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="get-id">
+                    <h1 style="color: black" id="get-name">
+                        Code Transaction:
+                    </h1>
+                    <hr>
+                    <p> Bạn có muốn xoá giao dịch này không ?</p>
+                    <p style="color: red">Hành động này không thể hoàn tác!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Không</button>
+                    <button type="submit" class="btn btn-danger">Có</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function deleteModal(id, name) {
+        document.getElementById("get-id").value = id;
+        document.getElementById("get-name").innerText = name;
+    }
+</script>
+</body>
+<th:block>
+    <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+    ></script>
+</th:block>
+</html>

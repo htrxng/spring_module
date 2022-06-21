@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block >
+        <!-- Font Awesome -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+                rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+                href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+                rel="stylesheet"
+        />
+    </th:block>
+
+</head>
+<body>
+<h1 style="text-align: center;color: darkslategrey">REAL ESTATE TRANSACTION LIST</h1>
+<form th:action="@{/transaction/list}" method="get">
+    <div class="row">
+        <div class="form-outline my-2 col-3 mx-3">
+            <input type="text" id="serviceType" class="form-control" name="keyWordServiceType"/>
+            <label class="form-label" for="serviceType">Service Type</label>
+        </div>
+        <div class="form-outline my-2 col-3 mx-3">
+            <select name="customerId" class="form-select" aria-label="Disabled select example">
+                <option value="" th:text="---Customer---"></option>
+                <option th:each="customer : ${customerList}" th:value="${customer.customerId}"
+                        th:text="${customer.customerName}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-dark col-2 my-2">Search</button>
+    </div>
+</form>
+<a class="btn btn-success" th:href="@{/transaction/addNewTransaction}" style="color: white">+ ADD TRANSACTION</a>
+
+ <table class="table align-middle mb-0 bg-white">
+     <thead class="bg-light">
+     <tr>
+         <th>Stt</th>
+         <th>Mã giao dịch</th>
+         <th>Tên khách hàng</th>
+         <th>Loại dịch vụ</th>
+         <th>Ngày giao dịch</th>
+         <th>Đơn giá</th>
+         <th>Diện tích</th>
+         <th>Hoạt động</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr th:each="transaction, stt : ${transactionList}">
+         <th scope="row" th:text="${stt.count}"></th>
+         <td>
+             <p class="fw-normal mb-1" th:text="${transaction.transactionCode}"></p>
+         </td>
+         <td>
+             <p class="fw-normal mb-1" th:text="${transaction.customer.customerName}"></p>
+         </td>
+         <td th:text="${transaction.serviceType}"></td>
+         <td th:text="${transaction.transactionDate}">
+         </td>
+
+         <td th:text="${transaction.bill} +'$'"></td>
+         <td th:text="${transaction.area} + 'm^2'"></td>
+         <td>
+             <a class="btn btn-success" th:href="@{/transaction/detailForm(id=${transaction.transactionId})}">Detail</a>
+         </td>
+     </tr>
+     </tbody>
+ </table>
+</body>
+<th:block >
+    <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+    ></script>
+</th:block>
+</html>

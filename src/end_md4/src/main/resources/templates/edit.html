@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block>
+        <!-- Font Awesome -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+                rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+                href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+                rel="stylesheet"
+        />
+    </th:block>
+</head>
+<body>
+<form th:action="@{update}" th:object="${productOrderDto}" method="post">
+    <fieldset class="w-75 mx-auto">
+        <legend class="text-center my-4"><span class="text-secondary">EDIT ORDER</span></legend>
+        <div>
+            <input type="hidden" th:field="*{orderId}">
+        </div>
+        <!--        <div class="w-25 mx-auto my-4">-->
+        <!--            <p style="color: red" th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></p>-->
+        <!--        </div>-->
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{product.productType}" class="form-select" aria-label="Disabled select example">
+                <option value="" th:text="---Loaisanpham---"></option>
+                <option th:each="productType : ${productTypeList}"
+                        th:value="${productType.productTypeId}"
+                        th:text="${productType.productTypeName}"></option>
+            </select>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <select th:field="*{product}" class="form-select" aria-label="Disabled select example">
+                <option value="" th:text="---sanpham---"></option>
+                <option th:each="product: ${productList}" th:value="${product.productId}"
+                        th:text="${product.productName}"></option>
+            </select>
+        </div>
+        <div class="form-outline w-25 mx-auto">
+            <input class="form-control" id="orderDate" type="date" th:field="*{orderDate}"/>
+            <label class="form-label" for="orderDate">Ngày mua </label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('orderDate')}" th:errors="*{orderDate}"></p>
+        </div>
+        <div class="form-outline w-25 mx-auto my-4">
+            <input class="form-control" id="quantity" type="text" th:field="*{quantity}"/>
+            <label class="form-label" for="quantity">Số lượng</label>
+        </div>
+        <div class="w-25 mx-auto my-4">
+            <p style="color: red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></p>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary mt-4 mx-2">Sửa</button>
+        <a href="/order/list">
+            <button type="button" class="btn btn-warning mt-4 mx-2">Quay lại</button>
+        </a>
+    </div>
+</form>
+</body>
+<th:block>
+    <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+    ></script>
+</th:block>
+</html>
