@@ -4,8 +4,6 @@ import com.codgym.final_exam_api.model.Bus;
 import com.codgym.final_exam_api.repository.IBusRepository;
 import com.codgym.final_exam_api.service.IBusService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,9 +34,19 @@ public class BusService implements IBusService {
     }
 
     @Override
-    public Page<Bus> getAllBus(Pageable pageable) {
-        return this.iBusRepository.getAllBus(pageable);
+    public List<Bus> searchBy(String name, String id) {
+        if (id.equals("")) {
+            return this.iBusRepository.findAllByBusWareHouse_BusWareHouseNameContaining(name);
+        } else {
+            return this.iBusRepository.findAllByBusWareHouse_BusWareHouseNameContainingAndBusWareHouse_BusWareHouseId
+                    (name, Integer.parseInt(id));
+
+        }
     }
-
-
 }
+//    @Override
+//    public Page<Bus> getAllBus(Pageable pageable) {
+//        return this.iBusRepository.getAllBus(pageable);
+//    }
+
+
