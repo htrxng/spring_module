@@ -2,7 +2,6 @@ package com.codegym.controller;
 
 import com.codegym.dto.CartDto;
 import com.codegym.dto.ProductDto;
-import com.codegym.model.Cart;
 import com.codegym.model.Product;
 import com.codegym.service.IProductService;
 import org.springframework.beans.BeanUtils;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Optional;
 
 @Controller
 @SessionAttributes("cart") // khai báo session tên là cart
@@ -37,20 +34,19 @@ public class ProductController {
     }
 
     @GetMapping("/add/{id}")
-    public String addToCart(@PathVariable Long id, @SessionAttribute("cart") CartDto cart, @RequestParam String action) {
-        Optional<Product> productOptional = productService.findById(id);
-        if (!productOptional.isPresent()) {
-            return "/error";
+    public String addToCart(@PathVariable Long id, @SessionAttribute("cart") CartDto cart,
+                            @RequestParam String action) {
+        Product product = productService.findById(id);
+        if (product == null) {
+            return "/error.404";
         }
         String path = null;
         ProductDto productDto = new ProductDto();
-        BeanUtils.copyProperties(productOptional.get(), productDto);
+        BeanUtils.copyProperties(product, productDto);
         cart.addProduct(productDto);
         if (action.equals("cart")) {
-            System.out.println(action);
             path = "redirect:/cart/shopping-cart";
         } else if (action.equals("list")) {
-            System.out.println(action);
             path = "redirect:/shop";
         }
         return path;
@@ -58,23 +54,27 @@ public class ProductController {
 
     @GetMapping("/decrease/{id}")
     public String decreaseQuantity(@PathVariable Long id, @SessionAttribute("cart") CartDto cart, @RequestParam String action) {
-        Optional<Product> productOptional = productService.findById(id);
-        if (!productOptional.isPresent()) {
-            return "/error";
+        Product product = productService.findById(id);
+        if (product == null) {
+            return "/error.404";
         }
         ProductDto productDto = new ProductDto();
-        BeanUtils.copyProperties(productOptional.get(), productDto);
+        BeanUtils.copyProperties(product, productDto);
         cart.decreaseProduct(productDto);
         return "redirect:/cart/shopping-cart";
     }
 
     @GetMapping("/{id}/detailForm")
     public String goDetail(@PathVariable Long id, Model model) {
-        Optional<Product> productOptional = productService.findById(id);
-        ProductDto productDto = new ProductDto();
-        BeanUtils.copyProperties(productOptional, productDto);
-        model.addAttribute("product", productDto);
-        return "/detail";
+        Product product = productService.findById(id);
+        if (product != null) {
+            ProductDto productDto = new ProductDto();
+            BeanUtils.copyProperties(product, productDto);
+            System.out.println(productDto.getPrice());
+            model.addAttribute("product", productDto);
+            return "/detail";
+        } else {
+            return "/error.404";
+        }
     }
-
 }

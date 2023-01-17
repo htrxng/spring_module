@@ -8,119 +8,132 @@
     <style th:replace="~{layout :: css-blink}"></style>
 </head>
 <body>
-<header th:replace="~{layout :: header}"></header>
-
-<!--<h1 class="text-animation" style="text-align: center;color: olivedrab; font-style: italic"> EMPLOYEE LIST</h1>-->
-<div class="sign">
-    <span class="fast-flicker">EMP</span>LOY<span class="flicker">EE</span>
-</div>
-
-<a class="btn btn-success" th:href="@{/employee/addNewEmployee}" style="color: white">+ ADD EMPLOYEE</a>
-<form th:action="@{/employee/list}" method="get">
+<div class="container-fluid">
     <div class="row">
-        <div class="form-outline my-2 col-3 mx-3">
-            <input type="text" id="name" class="form-control" name="keyWordName"/>
-            <label class="form-label" for="name">Name</label>
-        </div>
-        <div class="form-outline my-2 col-3 mx-3">
-            <select name="positionId" class="form-select" aria-label="Disabled select example">
-                <option value="%" th:text="---Position---"></option>
-                <option th:each="position : ${positionList}" th:value="${position.positionId}"
-                        th:text="${position.positionName}"></option>
-            </select>
-        </div>
-        <div class="form-outline my-2 col-3 mx-3">
-            <select name="divisionId" class="form-select" aria-label="Disabled select example">
-                <option value="%" th:text="---Division---"></option>
-                <option th:each="divison : ${divisionList}" th:value="${divison.divisionId}"
-                        th:text="${divison.divisionName}"></option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-dark col-2 my-2">Search</button>
+        <header th:replace="~{layout :: header}"></header>
     </div>
-</form>
-<table class="table align-middle mb-0 bg-white">
-    <thead class="bg-light">
-    <tr>
-        <th>Stt</th>
-        <th>Name</th>
-        <th>BirthDate</th>
-        <th>Id Card</th>
-        <th>Salary</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Position</th>
-        <th>Education Degree</th>
-        <th>Division</th>
-        <th colspan="3">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="employee, stt : ${employees}">
-        <th scope="row" th:text="${stt.count}"></th>
-        <td>
-            <p class="fw-normal mb-1" th:text="${employee.employeeName}"></p>
-        </td>
-        <td th:text="${employee.employeeDateOfBirth}">
-        </td>
-        <td th:text="${employee.employeeIdCard}"></td>
-        <td th:text="${#numbers.formatDecimal(employee.employeeSalary, 0, 'COMMA', 0, 'POINT')}"></td>
-        <td th:text="${employee.employeePhone}"></td>
-        <td th:text="${employee.employeeEmail}"></td>
-        <td th:text="${employee.employeeAddress}"></td>
-        <td th:text="${employee.position.positionName}"></td>
-        <td th:text="${employee.educationDegree.educationDegreeName}"></td>
-        <td th:text="${employee.division.divisionName}"></td>
-        <td>
-            <a class="btn btn-success" th:href="@{/employee/detailForm(id=${employee.employeeId})}">Detail</a>
-        </td>
-        <td>
-            <a class="btn btn-warning" th:href="@{/employee/editForm(id=${employee.employeeId})}">Update</a>
-        </td>
-        <td>
-            <a class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal"
-               th:attr="onclick=|deleteModal('${employee.employeeId}', '${employee.employeeName}')|">
-                Delete
+    <div class="row">
+        <div class="sign">
+            <marquee width="60%" direction="left" scrollamount="20" height="100%">
+                <span class="fast-flicker">EMP</span>LOY<span class="flicker">EE</span>
+            </marquee>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <a class="btn btn-success" th:href="@{/employee/addNewEmployee}" style="color: white">+ ADD EMPLOYEE</a>
+        <form th:action="@{/employee/list}" method="get">
+            <div class="row">
+                <div class="form-outline my-2 col-3 mx-3">
+                    <input type="text" id="name" class="form-control" name="keyWordName"/>
+                    <label class="form-label" for="name">Name</label>
+                </div>
+                <div class="form-outline my-2 col-3 mx-3">
+                    <select name="positionId" class="form-select" aria-label="Disabled select example">
+                        <option value="%" th:text="---Position---"></option>
+                        <option th:each="position : ${positionList}" th:value="${position.positionId}"
+                                th:text="${position.positionName}"></option>
+                    </select>
+                </div>
+                <div class="form-outline my-2 col-3 mx-3">
+                    <select name="divisionId" class="form-select" aria-label="Disabled select example">
+                        <option value="%" th:text="---Division---"></option>
+                        <option th:each="divison : ${divisionList}" th:value="${divison.divisionId}"
+                                th:text="${divison.divisionName}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-dark col-2 my-2">Search</button>
+            </div>
+        </form>
+      <div class="table-responsive">
+          <table class="table align-middle mb-0 bg-white">
+              <thead class="bg-light">
+              <tr>
+                  <th>Stt</th>
+                  <th>Name</th>
+                  <th>BirthDate</th>
+                  <th>Id Card</th>
+                  <th>Salary</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Position</th>
+                  <th>Education Degree</th>
+                  <th>Division</th>
+                  <th colspan="3">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="employee, stt : ${employees}">
+                  <th scope="row" th:text="${stt.count}"></th>
+                  <td>
+                      <p class="fw-normal mb-1" th:text="${employee.employeeName}"></p>
+                  </td>
+                  <td th:text="${employee.employeeDateOfBirth}">
+                  </td>
+                  <td th:text="${employee.employeeIdCard}"></td>
+                  <td th:text="${#numbers.formatDecimal(employee.employeeSalary, 0, 'COMMA', 0, 'POINT')}"></td>
+                  <td th:text="${employee.employeePhone}"></td>
+                  <td th:text="${employee.employeeEmail}"></td>
+                  <td th:text="${employee.employeeAddress}"></td>
+                  <td th:text="${employee.position.positionName}"></td>
+                  <td th:text="${employee.educationDegree.educationDegreeName}"></td>
+                  <td th:text="${employee.division.divisionName}"></td>
+                  <td>
+                      <a class="btn btn-success" th:href="@{/employee/detailForm(id=${employee.employeeId})}">Detail</a>
+                  </td>
+                  <td>
+                      <a class="btn btn-warning" th:href="@{/employee/editForm(id=${employee.employeeId})}">Update</a>
+                  </td>
+                  <td>
+                      <a class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal"
+                         th:attr="onclick=|deleteModal('${employee.employeeId}', '${employee.employeeName}')|">
+                          Delete
+                      </a>
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
+    <div class="row" style="text-align: center">
+        <div class="row-lg-12">
+            <a th:if="${employees.hasPrevious()}"
+               th:href="@{/employee/list(page=0,
+            keyWordName=${keyWordNameVal},
+            positionId = ${positionIdVal},
+            divisionId = ${divisionIdVal}
+           )}">
+                <i class="fas fa-angle-double-left"></i>
             </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<div class="row" style="text-align: center">
-    <div class="row-lg-12">
-        <a th:if="${employees.hasPrevious()}"
-           th:href="@{/employee/list(page=0,
+            <a th:if="${employees.hasPrevious()}"
+               th:href="@{/employee/list(page=${employees.number - 1 },
             keyWordName=${keyWordNameVal},
             positionId = ${positionIdVal},
             divisionId = ${divisionIdVal}
            )}">
-            <i class="fas fa-angle-double-left"></i>
-        </a>
-        <a th:if="${employees.hasPrevious()}"
-           th:href="@{/employee/list(page=${employees.number - 1 },
-            keyWordName=${keyWordNameVal},
-            positionId = ${positionIdVal},
-            divisionId = ${divisionIdVal}
-           )}">
-            <i class="fas fa-angle-left"></i>
-        </a>
-        <span th:text="${employees.number + 1 }"></span>/
-        <span th:text="${employees.totalPages}"></span>
-        <a th:if="${employees.hasNext()}"
-           th:href="@{/employee/list(page=${employees.number + 1 },
+                <i class="fas fa-angle-left"></i>
+            </a>
+            <span th:text="${employees.number + 1 }"></span>/
+            <span th:text="${employees.totalPages}"></span>
+            <a th:if="${employees.hasNext()}"
+               th:href="@{/employee/list(page=${employees.number + 1 },
            keyWordName=${keyWordNameVal},
             positionId = ${positionIdVal},
             divisionId = ${divisionIdVal})}">
-            <i class="fas fa-angle-right"></i>
-        </a>
-        <a th:if="${employees.hasNext()}"
-           th:href="@{/employee/list(page=${employees.totalPages -1 },
+                <i class="fas fa-angle-right"></i>
+            </a>
+            <a th:if="${employees.hasNext()}"
+               th:href="@{/employee/list(page=${employees.totalPages -1 },
            keyWordName=${keyWordNameVal},
             positionId = ${positionIdVal},
             divisionId = ${divisionIdVal})}">
-            <i class="fas fa-angle-double-right"></i>
-        </a>
+                <i class="fas fa-angle-double-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div th:replace="~{layout :: go-top-html}"></div>
+        <footer th:replace="~{layout :: footer}"></footer>
     </div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -148,15 +161,13 @@
         </div>
     </div>
 </div>
+</body>
 <script>
     function deleteModal(id, name) {
         document.getElementById("get-id").value = id;
         document.getElementById("get-name").innerText = name;
     }
 </script>
-<div th:replace="~{layout :: go-top-html}"></div>
-<footer th:replace="~{layout :: footer}"></footer>
-</body>
 <script th:replace="~{layout :: go-top-js}"></script>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 </html>

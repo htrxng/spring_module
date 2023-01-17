@@ -11,12 +11,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DictionaryController {
+
     @Autowired
-    IWordService wordService;
+    static IWordService wordService;
+
+    @GetMapping(value = "/form")
+    public String goSearch() {
+        return "search";
+    }
+
     @GetMapping(value = "/search")
     public String searchWord(@RequestParam String word, Model model) {
-      Word foundedWord =  wordService.findWord(word);
-      model.addAttribute("word",foundedWord);
-      return "search";
+        Word foundedWord = wordService.findWord(word);
+        model.addAttribute("word", foundedWord);
+        return "search";
     }
 }

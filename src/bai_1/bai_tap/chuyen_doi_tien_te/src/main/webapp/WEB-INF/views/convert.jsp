@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>convert</title>
 </head>
 <body>
 <form action="/convert" method="get">
@@ -17,6 +17,7 @@
     <input type="submit" value="convert to vnd">
 </form>
 
-<h1>VND: ${result}</h1>
+<h1 >VND: ${result}</h1>
+<p>${serviceName}</p>
 </body>
 </html>

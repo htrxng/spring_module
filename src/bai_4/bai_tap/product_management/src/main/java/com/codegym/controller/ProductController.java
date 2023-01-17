@@ -5,7 +5,10 @@ import com.codegym.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -19,7 +22,7 @@ public class ProductController {
     }
 
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = {"","list"})
     public String goList(Model model) {
         model.addAttribute("productList",this.iProductService.getProductList());
         return "list";
@@ -35,7 +38,7 @@ public class ProductController {
     public String addToList(Product product, RedirectAttributes redirectAttributes) {
         iProductService.addProduct(product);
         redirectAttributes.addFlashAttribute("success","add successfully!");
-        return "redirect:/list";
+        return "redirect:/";
     }
 
     @GetMapping("/{id}/deleteForm")

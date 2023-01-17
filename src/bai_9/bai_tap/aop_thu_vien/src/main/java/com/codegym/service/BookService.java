@@ -30,17 +30,14 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public Boolean lendBookById(Integer id) throws RunoutQuantity {
+    public Boolean lendBookById(Integer id) {
         Boolean flag= false;
         Book book = iBookRepository.findById(id).orElse(null);
         if (book != null && book.getQuantity() > 0) {
             book.setQuantity(book.getQuantity() - 1);
             iBookRepository.save(book);
             flag = true;
-        } else {
-            throw new RunoutQuantity("hết sách rồi");
         }
-
         return flag;
     }
 

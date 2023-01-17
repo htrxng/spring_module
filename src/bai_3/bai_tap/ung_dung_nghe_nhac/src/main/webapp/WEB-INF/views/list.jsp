@@ -21,18 +21,34 @@
         <th>Kind Of Music</th>
         <th>Link</th>
     </tr>
-<c:forEach var="song" items="${songList}">
-    <tr>
-        <td>${song.songName}</td>
-        <td>${song.artist}</td>
-        <td><c:forEach var="kindOfMusic" items="${kindOfMusicList}">
-            <c:if test="${song.kindOfMusicId == kindOfMusic.kindOfMusicId}">
-                ${kindOfMusic.kindOfMusic}
-            </c:if>
-        </c:forEach></td>
-        <td>${song.filePath}</td>
-    </tr>
-</c:forEach>
+    <c:forEach var="song" items="${songList}">
+        <tr>
+            <td>${song.songName}</td>
+            <td>${song.artist}</td>
+            <td><c:forEach var="kindOfMusic" items="${kindOfMusicList}">
+                <c:if test="${song.kindOfMusicId == kindOfMusic.kindOfMusicId}">
+                    ${kindOfMusic.kindOfMusic}
+                </c:if>
+            </c:forEach></td>
+            <td>${song.filePath}</td>
+            <td>
+                    <%--            <button value="sound" onclick="playMusic()">Play</button>--%>
+                    <%--            <audio id="audio" src="${song.filePath}"></audio>--%>
+                <audio controls>
+                    <source src="${song.filePath}" type="audio/mp3">
+                    <source src="${song.filePath}" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </td>
+        </tr>
+    </c:forEach>
 </table>
+<script>
+    function playMusic() {
+        let music = document.getElementById("audio").innerHTML;
+        let musicPlay = new Audio(music);
+        musicPlay.play();
+    }
+</script>
 </body>
 </html>

@@ -21,6 +21,11 @@ public class WordServiceImpl implements IWordService {
        dictionary.add(word3);
        dictionary.add(word4);
    }
+
+    public static void setDictionary(List<Word> dictionary) {
+        WordServiceImpl.dictionary = dictionary;
+    }
+
     @Override
     public Word findWord(String word) {
        Word wordFounded = null;

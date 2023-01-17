@@ -4,41 +4,89 @@
     <th:block th:replace="~{layout :: linkbootstrapCss}" }></th:block>
 </head>
 <body>
-<header th:replace="~{layout :: header}"></header>
+<div class="container-fluid">
+    <div class="header">
+        <header th:replace="~{layout :: header}"></header>
+    </div>
+    <div class="row">
+        <center>
+            <h1 th:replace="~{layout :: title}"></h1>
+        </center>
+        <div class="form-row text-center">
+            <div class="col-12">
+                <a class="btn btn-primary" th:href="@{/create}">Add new Product</a>
+            </div>
+        </div>
+    </div>
+    <form class="form-inline d-flex" action="/search">
+        <input class="form-control w-25" type="text" name="query" placeholder="Search by Name">
+        <input class="btn btn-info" type="submit" value="Search">
+    </form>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Manufacturer</th>
+                <th colspan="3">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="e, stt : ${productList}">
+                <th scope="row" th:text="${stt.count}"></th>
+                <td th:text="${e.productName}"></td>
+                <td th:text="${e.price}"></td>
+                <td th:text="${e.quantity}"></td>
+                <td th:text="${e.manufacturer}"></td>
+                <td><a class="btn btn-success" th:href="@{/{id}/detailForm(id=${e.productId})}">Detail</a>
+                </td>
+                <td>
+                    <a class="btn btn-warning" th:href="@{/{id}/editForm(id=${e.productId})}">Edit</a>
+                </td>
+                <td>
+                    <!--                    <input type="hidden" id="idProduct" th:value="${e.productId}"/>-->
+                    <!--                    <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal"-->
+                    <!--                            onclick="getDataToDelete()">-->
+                    <!--                        Delete-->
+                    <!--                    </button>-->
+                    <a class="btn btn-danger" th:href="@{/{id}/deleteForm(id=${e.productId})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
- <h1 th:replace="~{layout :: title}"></h1>
- <button><a th:href="@{/create}">Add new Product</a></button>
-<form action="/search" >
-    <input type="text" name="query" placeholder="Search by Name">
-    <input type="submit" value="Search">
-</form>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Stt</th>
-        <th scope="col">Name</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Manufacturer</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="product, stt : ${productList}">
-        <th scope="row" th:text="${stt.count}"></th>
-        <td th:text="${product.productName}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.quantity}"></td>
-        <td th:text="${product.manufacturer}"></td>
-        <td>
-            <button type="button" class="btn btn-success"><a th:href="@{/{id}/detailForm(id=${product.productId})}">Detail</a></button>
-            <button type="button" class="btn btn-warning"><a th:href="@{/{id}/editForm(id=${product.productId})}">Edit</a></button>
-            <button type="button" class="btn btn-danger"><a th:href="@{/{id}/deleteForm(id=${product.productId})}">Delete</a></button>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="contentModal">Are you sure for delete ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <header th:replace="~{layout :: footer}"></header>
+</div>
+<script>
+    function getDataToDelete() {
+        let idProduct = document.getElementById("idProduct").innerText;
+        console.log(idProduct);
+    }
+</script>
 </body>
 <th:block th:replace="~{layout :: linkbootstrapJS}" }></th:block>
 </html>

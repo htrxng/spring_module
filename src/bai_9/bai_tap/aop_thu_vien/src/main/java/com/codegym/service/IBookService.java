@@ -12,7 +12,7 @@ public interface IBookService {
 
     Book findById(Integer id);
 
-    Boolean lendBookById(Integer id) throws RunoutQuantity;
+    Boolean lendBookById(Integer id);
 
     void payBook(Book book);
 }

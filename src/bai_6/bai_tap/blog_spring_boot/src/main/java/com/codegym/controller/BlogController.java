@@ -25,33 +25,30 @@ public class BlogController {
 
     // set thuộc tính findAllCategory cho modelAttribute;
     @ModelAttribute("categoryList")
-    public List<Category> findAllCategory(){
+    public List<Category> findAllCategory() {
         return this.iCategoryService.findAll();
     }
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = "list")
     public String showList(Model model,
                            @PageableDefault(value = 2) Pageable pageable,
                            @RequestParam Optional<String> keyWord
     ) {
         String keywordVal = keyWord.orElse("");
-
         model.addAttribute("blogList", this.iBlogService.findAllByPage(keywordVal, pageable));
         model.addAttribute("keywordVal", keywordVal);
-//        model.addAttribute("categoryList", this.iCategoryService.findAll());
         return "/list";
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam("categoryId") String categoryId , Model model,
+    public String search(@RequestParam("categoryId") String categoryId, Model model,
                          @PageableDefault(value = 2) Pageable pageable,
                          @RequestParam Optional<String> keyWord) {
         String keywordVal = keyWord.orElse("");
-
         if (!keywordVal.equals("")) {
-           Category category =  iCategoryService.findById(Integer.parseInt(categoryId));
+            Category category = iCategoryService.findById(Integer.parseInt(categoryId));
             model.addAttribute("keywordVal", keywordVal);
-            model.addAttribute("blogList", iBlogService.findAllBlogByTitleAndCategoryAndPage(keywordVal, category,pageable));
+            model.addAttribute("blogList", iBlogService.findAllBlogByTitleAndCategoryAndPage(keywordVal, category, pageable));
         } else {
             model.addAttribute("blogList", this.iBlogService.findAllByPage(keywordVal, pageable));
             model.addAttribute("keywordVal", keywordVal);

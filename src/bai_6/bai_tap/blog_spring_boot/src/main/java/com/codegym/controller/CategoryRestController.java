@@ -23,7 +23,7 @@ public class CategoryRestController {
     @Autowired
     private IBlogService iBlogService;
 
-    @GetMapping("/listCategory")
+    @GetMapping("/categories")
     public ResponseEntity<List<Category>> getPageCategory() {
         List<Category> categoryList = this.iCategoryService.findAll();
         if (categoryList.isEmpty()) {
@@ -33,9 +33,9 @@ public class CategoryRestController {
         }
     }
 
-    @GetMapping("/list-category/{id}")
+    @GetMapping("/blogsByCategory/{id}")
     public ResponseEntity<List<Blog>> getBlogInCategory(@PathVariable Integer id) {
-        List<Blog> blogPage = this.iBlogService.findAllBLogByCategory_CategoryId(id);
+        List<Blog> blogPage = this.iBlogService.findAllBLogByCategoryCategoryId(id);
         if (blogPage.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

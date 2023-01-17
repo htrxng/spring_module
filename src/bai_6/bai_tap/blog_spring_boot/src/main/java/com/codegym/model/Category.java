@@ -7,13 +7,13 @@ import java.util.List;
 
 @Entity
 @Table
-public class Category {
+public class  Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
     private String categoryName;
-    @JsonBackReference
     @OneToMany(mappedBy = "category")
+    @JsonBackReference
     private List<Blog> blogList;
 
 

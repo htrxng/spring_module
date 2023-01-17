@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -7,17 +8,23 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>Sandwich Condiments</title>
-  </head>
-  <body>
-  <h1>Sandwich Condiment</h1>
-  <form action="save" method="get">
-    <input type="checkbox" name="condiment" value="lettuce"> Letucce
-    <input type="checkbox" name="condiment" value="potato"> potato
-    <input type="checkbox" name="condiment" value="mustard"> mustard
-    <input type="checkbox" name="condiment" value="sprouts"> sprouts
-    <input type="submit">
-  </form>
-  </body>
+</head>
+<body>
+<h1>Sandwich Condiment</h1>
+<c:if test="${mess != null}">
+  <p>${mess}</p>
+</c:if>
+<form action="save" method="post">
+  <c:forEach items="${condiments}" var="condiment">
+    <label for="${condiment.condimentName}">
+      <img src="${condiment.img}"
+           alt="" width="200px" height="200px">
+      lettuce </label>
+    <input id="${condiment.condimentName}" type="checkbox" name="condimentSelected" value="${condiment.condimentId}">
+  </c:forEach>
+    <button>Order</button>
+</form>
+</body>
 </html>

@@ -22,7 +22,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/facility")
+//@RequestMapping(value = "/facility")
+@RequestMapping(value={"/formA.html", "/formB.html", "/formC.html"})
+
 public class FacilityController {
     @Autowired
     private IFacilityTypeService iFacilityTypeService;
@@ -46,6 +48,7 @@ public class FacilityController {
         model.addAttribute("facilityDto", facilityDto);
         return "service/create";
     }
+
     @PostMapping(value = "/addFacility")
     public String addService(@ModelAttribute @Validated FacilityDto facilityDto,
                              BindingResult bindingResult,

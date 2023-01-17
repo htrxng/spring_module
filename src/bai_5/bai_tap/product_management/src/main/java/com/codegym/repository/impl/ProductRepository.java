@@ -60,5 +60,4 @@ public class ProductRepository implements IProductRepository {
                         "select s from Product s where s.productName like '%query%'",Product.class);
         return typedQuery.getResultList();
     }
-
 }

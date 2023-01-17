@@ -19,6 +19,5 @@ public interface ICustomerService {
 
     List<Customer> findAllCustomer();
 
-
     List<OccupiedCustomerDto> findAllOcc();
 }

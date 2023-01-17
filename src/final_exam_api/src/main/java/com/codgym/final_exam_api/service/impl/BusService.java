@@ -44,9 +44,4 @@ public class BusService implements IBusService {
         }
     }
 }
-//    @Override
-//    public Page<Bus> getAllBus(Pageable pageable) {
-//        return this.iBusRepository.getAllBus(pageable);
-//    }
-
 

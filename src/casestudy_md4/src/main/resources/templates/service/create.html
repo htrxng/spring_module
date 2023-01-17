@@ -8,7 +8,7 @@
 </head>
 <body>
 <header th:replace="~{layout :: header}"></header>
-<form action="#" th:action="@{/facility/addFacility}" th:object="${facilityDto}" METHOD="post">
+<form class="text-center border border-dark p-5" action="#" th:action="@{/facility/addFacility}" th:object="${facilityDto}" METHOD="post">
     <fieldset class="w-75 mx-auto">
         <legend class="text-center my-4"><span class="text-secondary">ADD SERVICE</span></legend>
         <div>

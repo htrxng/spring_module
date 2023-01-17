@@ -7,6 +7,7 @@ import com.codegym.service.customer.ICustomerService;
 import com.codegym.service.customer.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ public class CustomerController {
 
     @GetMapping(value = "/list")
     public String showList(Model model,
-                           @PageableDefault(value = 3) Pageable pageable,
+                           @PageableDefault(value = 5) Pageable pageable,
                            @RequestParam Optional<String> keyWordName,
                            @RequestParam Optional<String> keyWordPhone,
                            @RequestParam Optional<Integer> customerTypeId) {
@@ -46,7 +47,6 @@ public class CustomerController {
         model.addAttribute("keyWordNameVal", keyWordNameVal);
         model.addAttribute("keyWordPhoneVal", keyWordPhoneVal);
         model.addAttribute("customerTypeIdVal", customerTypeIdVal);
-//        model.addAttribute("message","Hữu Trung xin chào toàn thể lớp C12 ^^");
         return "/customer/list";
     }
 
@@ -104,13 +104,13 @@ public class CustomerController {
         return "/customer/edit";
     }
 
-
     @PostMapping("/delete")
     public String deleteCustomer(@RequestParam String id,RedirectAttributes redirectAttributes) {
         this.iCustomerService.deleteById(Integer.parseInt(id));
         redirectAttributes.addFlashAttribute("message","Delete successfully!");
         return "redirect:/customer/list";
     }
+
     @GetMapping("occ-list")
     public String goOccList(Model model){
         model.addAttribute("occupiedList",this.iCustomerService.findAllOcc());

@@ -14,8 +14,21 @@
 </head>
 <body>
 <h2 style="color: brown">Your Sandwich will include </h2>
-<c:forEach var="condiment" items="${condiments}">
-   <p style="color: lightseagreen ">${condiment}</p>
-</c:forEach>
+<div style="margin: auto">
+    <img src="https://i.pinimg.com/564x/9c/7a/8d/9c7a8d87a6d3ceb238b9a24be4bf4488.jpg" alt=""
+         style="justify-content: center">
+</div>
+<table>
+    <tr>
+        <c:forEach var="condiment" items="${condiments}">
+            <c:forEach items="${condimentSelected}" var="condimentSelectId">
+                <c:if test="${condiment.condimentId == condimentSelectId}">
+                    <td><img src="${condiment.img}" alt="" width="200px" height="200px">
+                        <span>${condiment.condimentName}</span></td>
+                </c:if>
+            </c:forEach>
+        </c:forEach>
+    </tr>
+</table>
 </body>
 </html>

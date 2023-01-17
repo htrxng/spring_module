@@ -57,8 +57,8 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public List<Blog> findAllBLogByCategory_CategoryId(Integer id) {
-        return iBlogRepository.findAllByCategory_CategoryId(id);
+    public List<Blog> findAllBLogByCategoryCategoryId(Integer id) {
+        return iBlogRepository.findAllByCategoryCategoryId(id);
     }
 
 

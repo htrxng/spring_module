@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin(value = "*")
 @RestController
 @RequestMapping(value = "/api/bus")
 public class BusController {
@@ -94,8 +94,8 @@ public class BusController {
             this.busService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-
     }
+
     @GetMapping("/searchingBus")
     public ResponseEntity<List<Bus>> getVehicleList(@RequestParam Optional<String> busWareHouseName,
                                                         @RequestParam Optional<String> busWareHouseId) {

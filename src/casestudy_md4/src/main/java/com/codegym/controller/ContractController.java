@@ -50,10 +50,12 @@ public class ContractController {
     public List<Customer> findAllCustomer() {
         return this.iCustomerService.findAllCustomer();
     }
+
     @ModelAttribute("employeeList")
     public List<Employee> findAllEmployee() {
         return this.iEmployeeService.findAll();
     }
+
     @ModelAttribute("facilityList")
     public List<Facility> findAllFacility() {
         return this.iFacilityService.findAll();
@@ -76,6 +78,7 @@ public class ContractController {
         model.addAttribute("contractDto",contractDto);
         return "contract/create";
     }
+
     @PostMapping(value = "/addContractToSystem")
     public String addContract(@ModelAttribute @Validated ContractDto contractDto,
                               BindingResult bindingResult,
@@ -102,6 +105,7 @@ public class ContractController {
         model.addAttribute("contractDetailDto",contractDetailDto);
         return "contract/createContractDetail";
     }
+
     @PostMapping(value = "/addContractDetail")
     public String addContract(@ModelAttribute ContractDetailDto contractDetailDto,
                               RedirectAttributes redirectAttributes) {
